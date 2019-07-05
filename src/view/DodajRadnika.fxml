@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="525.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DodajRadnikaController">
+   <children>
+      <VBox layoutX="217.0" layoutY="93.0" prefHeight="349.0" prefWidth="148.0" spacing="15.0">
+         <children>
+            <TextField fx:id="tfIme" prefHeight="40.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
+            <TextField fx:id="tfPrezime" prefHeight="40.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
+            <TextField fx:id="tfJmb" prefHeight="40.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
+            <TextField fx:id="tfKontakt" prefHeight="40.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
+            <TextField fx:id="tfKorisnickoIme" prefHeight="40.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
+            <PasswordField fx:id="tfPassword" prefHeight="40.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
+            <TextField fx:id="tfNovaLozinka" prefHeight="40.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
+            <ComboBox fx:id="cmbStatusRadnika" prefHeight="40.0" prefWidth="150.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
+         </children>
+      </VBox>
+      <Label fx:id="lBiografija" layoutX="422.0" layoutY="54.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Biografija">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <VBox layoutX="52.0" layoutY="92.0" prefHeight="283.0" prefWidth="130.0" spacing="20.0" AnchorPane.leftAnchor="40.0">
+         <children>
+            <Label fx:id="lIme" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Ime">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lPrezime" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Prezime">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lJmb" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="JMB">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lKontakt" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Kontakt">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lKorisnickoIme" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Korisničko ime">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lLozinka" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Lozinka">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lNovaLozinka" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Nova lozinka">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lStatusRadnika" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Status radnika">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <TextArea fx:id="taBiografija" layoutX="419.0" layoutY="93.0" prefHeight="330.0" prefWidth="208.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" wrapText="true" AnchorPane.rightAnchor="40.0" />
+      <ComboBox fx:id="cmbTipRadnika" layoutX="42.0" layoutY="21.0" onAction="#prikazPoljaNaOsnovuTipaRadnikaIzKomboBoksa" prefHeight="40.0" prefWidth="150.0" promptText="Tip radnika" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
+      <Button fx:id="bOdustani" layoutX="408.0" layoutY="461.0" mnemonicParsing="false" onAction="#odustaniOdUnosaRadnikaAction" prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Odustani">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="bPotvrdi" layoutX="529.0" layoutY="461.0" mnemonicParsing="false" onAction="#potvrdiUnosRadnikaAction" prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Potvrdi">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

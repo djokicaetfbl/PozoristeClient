@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="204.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DodajRepertoarController">
+   <children>
+      <VBox layoutX="37.0" layoutY="14.0" prefHeight="66.0" prefWidth="182.0" spacing="10.0" AnchorPane.leftAnchor="35.0">
+         <children>
+            <Label fx:id="lTerminRepertoara" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Termin repertoara">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <Button fx:id="bDodajIgranje" layoutX="393.0" layoutY="140.0" mnemonicParsing="false" onAction="#dodajIgranjeAction" prefHeight="40.0" prefWidth="180.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Dodaj igranje" AnchorPane.rightAnchor="35.60000000000002">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="bNazad" layoutX="35.0" layoutY="140.0" mnemonicParsing="false" onAction="#nazadaNaPregledSvihRepertoara" prefHeight="40.0" prefWidth="180.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Nazad" AnchorPane.leftAnchor="35.0">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <ComboBox fx:id="cmbGodina" layoutX="232.0" layoutY="14.0" prefHeight="40.0" prefWidth="180.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
+      <ComboBox fx:id="cmbMjesec" layoutX="389.0" layoutY="14.0" prefHeight="40.0" prefWidth="180.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" AnchorPane.rightAnchor="35.0" />
+   </children>
+</AnchorPane>

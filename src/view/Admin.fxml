@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+   <children>
+      <VBox layoutX="190.0" layoutY="127.0" prefHeight="314.0" prefWidth="222.0" spacing="15.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="170.0" AnchorPane.topAnchor="127.0">
+         <children>
+            <Button fx:id="bPregledPredstave" mnemonicParsing="false" onAction="#PregledPredstavaAction" prefHeight="60.0" prefWidth="220.0" text="Pregled predstava">
+               <font>
+                  <Font name="Tempus Sans ITC" size="18.0" />
+               </font></Button>
+            <Button fx:id="bPregledRepertoara" mnemonicParsing="false" onAction="#PregledRepertoaraAction" prefHeight="60.0" prefWidth="220.0" text="Pregled repertoara">
+               <font>
+                  <Font name="Tempus Sans ITC" size="18.0" />
+               </font></Button>
+            <Button fx:id="bPregledRadnika" mnemonicParsing="false" onAction="#PregledRadnikaAction" prefHeight="60.0" prefWidth="220.0" text="Pregled radnika">
+               <font>
+                  <Font name="Tempus Sans ITC" size="18.0" />
+               </font></Button>
+            <Button fx:id="buttonStatistika" mnemonicParsing="false" prefHeight="60.0" prefWidth="220.0" text="Statistika">
+               <font>
+                  <Font name="Tempus Sans ITC" size="18.0" />
+               </font></Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DodajPredstavuController">
+   <children>
+      <Label fx:id="labelNaziv" layoutX="137.0" layoutY="39.0" prefHeight="27.0" prefWidth="71.0" text="Naziv" AnchorPane.leftAnchor="120.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></Label>
+      <Label fx:id="labelOpis" layoutX="137.0" layoutY="79.0" prefHeight="27.0" prefWidth="71.0" text="Opis" AnchorPane.leftAnchor="120.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></Label>
+      <Label fx:id="labelTip" layoutX="130.0" layoutY="176.0" prefHeight="27.0" prefWidth="71.0" text="Tip" AnchorPane.leftAnchor="120.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></Label>
+      <Label fx:id="labelPisac" layoutX="130.0" layoutY="230.0" prefHeight="27.0" prefWidth="71.0" text="Pisac" AnchorPane.leftAnchor="120.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></Label>
+      <Label fx:id="labelReziser" layoutX="130.0" layoutY="287.0" prefHeight="27.0" prefWidth="71.0" text="Režiser" AnchorPane.leftAnchor="120.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></Label>
+      <Label fx:id="labelGlumci" layoutX="130.0" layoutY="335.0" prefHeight="27.0" prefWidth="71.0" text="Glumci" AnchorPane.leftAnchor="120.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></Label>
+      <TextField fx:id="textFieldNaziv" layoutX="224.0" layoutY="35.0" prefHeight="35.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></TextField>
+      <TextArea fx:id="textAreaOpis" layoutX="224.0" layoutY="79.0" prefHeight="89.0" prefWidth="300.0" wrapText="true" AnchorPane.leftAnchor="200.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></TextArea>
+      <TextField fx:id="textFieldTip" layoutX="224.0" layoutY="176.0" prefHeight="35.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></TextField>
+      <TextField fx:id="textFieldPisac" layoutX="224.0" layoutY="230.0" prefHeight="35.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></TextField>
+      <TextField fx:id="textFieldReziser" layoutX="224.0" layoutY="282.0" prefHeight="35.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></TextField>
+      <TextArea fx:id="textAreaGlumci" layoutX="224.0" layoutY="335.0" prefHeight="73.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></TextArea>
+      <Button fx:id="buttonPregledajAngazman" layoutX="496.0" layoutY="402.0" mnemonicParsing="false" onAction="#pregledajAngazmanAction" prefHeight="40.0" prefWidth="120.0" text="Angažmani" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></Button>
+      <Button fx:id="buttonOK" layoutX="480.0" layoutY="421.0" mnemonicParsing="false" onAction="#okAction" prefHeight="40.0" prefWidth="120.0" text="Sačuvaj" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></Button>
+      <Button fx:id="bNazad" layoutX="149.0" layoutY="402.0" mnemonicParsing="false" onAction="#nazadNaPregledPredstava" prefHeight="40.0" prefWidth="120.0" text="Odustani" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
+         <font>
+            <Font name="Tempus Sans ITC" size="18.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
