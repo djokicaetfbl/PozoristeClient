@@ -36,6 +36,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.GostujucaPredstava;
@@ -245,6 +247,7 @@ public class DodajIgranjeController implements Initializable {
 
             Scene dodajRadnikaScene = new Scene(adminController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
         } catch (IOException ex) {
@@ -259,6 +262,7 @@ public class DodajIgranjeController implements Initializable {
 
             Scene dodajRadnikaScene = new Scene(adminController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
         } catch (IOException ex) {
@@ -461,6 +465,9 @@ public class DodajIgranjeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        bDodaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_plus.png"))));
+        bZavrsi.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
+        bUkloni.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/minus.png"))));
         try {
             ubaciUCMBPredstave();
             lUkloniIgranje.setVisible(false);

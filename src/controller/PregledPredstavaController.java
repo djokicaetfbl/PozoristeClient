@@ -30,6 +30,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.dto.GostujucaPredstava;
 import model.dto.Predstava;
@@ -94,6 +96,7 @@ public class PregledPredstavaController implements Initializable {
 
             Scene dodajRadnikaScene = new Scene(dodajRadnikaController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.setResizable(false);
             window.setTitle("Administrator");
@@ -179,6 +182,11 @@ public class PregledPredstavaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        buttonIzmijeniPredstavu.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_editproperty_48px.png"))));
+        buttonIzmijeniGostujucuPredstavu.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_editproperty_48px.png"))));
+        buttonDodaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_plus.png"))));
+        buttonNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
+        buttonPregledaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/info.png"))));
         try {
             // odredi adresu racunara sa kojim se povezujemo
             // (povezujemo se sa nasim racunarom)
@@ -304,6 +312,7 @@ public class PregledPredstavaController implements Initializable {
 
             Scene dodajRadnikaScene = new Scene(dodajRadnikaController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.setResizable(false);
             window.setTitle("Predstava");
@@ -314,11 +323,11 @@ public class PregledPredstavaController implements Initializable {
     }
     
     private void otvoriAngazmane(ActionEvent event){
-        try {
+               try {
             Parent dodajRadnikaController = FXMLLoader.load(getClass().getResource("/view/DodavanjeAngazmana.fxml"));
-
             Scene dodajRadnikaScene = new Scene(dodajRadnikaController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.setResizable(false);
             window.setTitle("Angažman");

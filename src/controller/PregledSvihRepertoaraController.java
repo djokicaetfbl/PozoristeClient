@@ -29,6 +29,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -76,6 +78,7 @@ public class PregledSvihRepertoaraController implements Initializable {
 
                 Scene dodajRadnikaScene = new Scene(adminController);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.centerOnScreen();
                 window.setScene(dodajRadnikaScene);
                 window.show();
             } catch (IOException ex) {
@@ -219,6 +222,7 @@ public class PregledSvihRepertoaraController implements Initializable {
 	                    Parent adminController = FXMLLoader.load(getClass().getResource("view/PregledRepertoara.fxml"));
 	                    Scene pregledRepertoara = new Scene(adminController);
 	                    Stage window = (Stage) sviRepertoariTableView.getScene().getWindow();
+	                    window.centerOnScreen();
 	                    window.setScene(pregledRepertoara);
 	                    window.show();
 	                } catch (IOException ex) {
@@ -240,6 +244,7 @@ public class PregledSvihRepertoaraController implements Initializable {
 
             Scene dodajRadnikaScene = new Scene(adminController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
         } catch (IOException ex) {
@@ -254,6 +259,7 @@ public class PregledSvihRepertoaraController implements Initializable {
 
             Scene dodajRadnikaScene = new Scene(adminController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
         } catch (IOException ex) {
@@ -263,6 +269,9 @@ public class PregledSvihRepertoaraController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+		bNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
+		bIzmjeniRepertoar.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_editproperty_48px.png"))));
+		bDodajRepertoar.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_plus.png"))));
     	try{
     		// odredi adresu racunara sa kojim se povezujemo
             // (povezujemo se sa nasim racunarom)

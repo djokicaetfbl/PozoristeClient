@@ -24,6 +24,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.Azuriranje;
@@ -281,6 +283,8 @@ public class DodajPredstavuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        buttonOK.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
+        bNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
         if (dodavanje) {
             if (domacaPredstava) {
                 labelPisac.setVisible(false);
@@ -374,6 +378,7 @@ public class DodajPredstavuController implements Initializable {
 
             Scene predstavaScene = new Scene(predstavaController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(predstavaScene);
             window.setResizable(false);
             window.setTitle("Angazman");

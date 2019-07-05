@@ -80,6 +80,11 @@ public class PregledKarataController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        buttonRezervisi.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_reservation.png"))));
+        buttonObrisiRezervaciju.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_reservationdelete.png"))));
+        buttonProdaja.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
+        buttonStorniraj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/warning.png"))));
+        buttonNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
         try{
         // odredi adresu racunara sa kojim se povezujemo
         // (povezujemo se sa nasim racunarom)
@@ -232,6 +237,7 @@ public class PregledKarataController implements Initializable {
             Parent pregledRepertoaraController = FXMLLoader.load(getClass().getResource("/view/PregledRepertoara.fxml"));
             Scene scene = new Scene(pregledRepertoaraController);
             Stage window = (Stage) buttonNazad.getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(scene);
             window.show();
         } catch (IOException ex) {
@@ -499,7 +505,7 @@ public class PregledKarataController implements Initializable {
             }
             Stage stage = new Stage();
             Scene scene = new Scene(root);
-
+            stage.centerOnScreen();
             stage.setTitle("Dodaj rezervaciju");
             stage.getIcons().add(new Image(PregledKarataController.class.getResourceAsStream("/resursi/drama.png")));
             stage.setScene(scene);

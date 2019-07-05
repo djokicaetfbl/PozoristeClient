@@ -34,6 +34,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.AdministrativniRadnik;
@@ -594,6 +596,7 @@ public class DodajRadnikaController implements Initializable {
 
                 Scene dodajZaposlenogScene = new Scene(dodajZaposlenogView);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.centerOnScreen();
                 window.setScene(dodajZaposlenogScene);
                 window.show();
             } catch (IOException ex) {
@@ -612,6 +615,7 @@ public class DodajRadnikaController implements Initializable {
 
             Scene dodajZaposlenogScene = new Scene(dodajZaposlenogView);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajZaposlenogScene);
             window.show();
         } catch (IOException ex) {
@@ -746,6 +750,8 @@ public class DodajRadnikaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        bPotvrdi.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
+        bOdustani.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
         sakriPolja();
         cmbStatusRadnika.getItems().addAll("Aktivan", "Neaktivan");
         cmbTipRadnika.getItems().addAll("Biletar", "Umjetnik", "Administrativni radnik");

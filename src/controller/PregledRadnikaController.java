@@ -30,6 +30,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.dto.AdministrativniRadnik;
 import model.dto.Biletar;
@@ -100,6 +102,7 @@ public class PregledRadnikaController implements Initializable {
 
             Scene dodajRadnikaScene = new Scene(dodajRadnikaController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
         } catch (IOException ex) {
@@ -124,6 +127,7 @@ public class PregledRadnikaController implements Initializable {
 
             Scene dodajRadnikaScene = new Scene(dodajRadnikaController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
         } catch (IOException ex) {
@@ -156,6 +160,10 @@ public class PregledRadnikaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        bDodaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_plus.png"))));
+        bIzmjeni.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_editproperty_48px.png"))));
+        bPretrazi.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/search.png"))));
+        bNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
     	try {
     		radniciObservableList.clear();
 	        taBiografija.setEditable(false);
@@ -298,6 +306,7 @@ public class PregledRadnikaController implements Initializable {
 
             Scene dodajRadnikaScene = new Scene(adminController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
         } catch (IOException ex) {

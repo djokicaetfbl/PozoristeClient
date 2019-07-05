@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.dto.Rezervacija;
 import model.dto.RezervisanoSjediste;
@@ -48,6 +49,8 @@ public class DodajRezervacijuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        buttonDodaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_plus.png"))));
+        buttonOdustani.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
         buttonOdustani.setOnAction(e -> ((Stage) buttonOdustani.getScene().getWindow()).close());
         buttonDodaj.setOnAction(e -> dodajButton());
     }

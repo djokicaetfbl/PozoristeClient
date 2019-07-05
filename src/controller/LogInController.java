@@ -124,7 +124,7 @@ public class LogInController implements Initializable {
 
                     Scene pozScene = new Scene(pozoristeController);
                     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+                    window.centerOnScreen();
                     window.setTitle("Administrator");
                     window.setResizable(false);
 

@@ -29,6 +29,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.Azuriranje;
@@ -169,6 +171,7 @@ public class DodajRepertoarController implements Initializable {
 
                 Scene dodajRadnikaScene = new Scene(adminController);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.centerOnScreen();
                 window.setScene(dodajRadnikaScene);
                 window.show();
             } catch (IOException ex) {
@@ -186,6 +189,7 @@ public class DodajRepertoarController implements Initializable {
 
             Scene dodajRadnikaScene = new Scene(adminController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
         } catch (IOException ex) {
@@ -195,6 +199,8 @@ public class DodajRepertoarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        bDodajIgranje.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_plus.png"))));
+        bNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
         cmbGodina.getItems().add(Calendar.getInstance().get(Calendar.YEAR));
         for (Integer mjesec = (Calendar.getInstance().get(Calendar.MONTH) + 1); mjesec <= 12; mjesec++) {
             cmbMjesec.getItems().add(mjesec);

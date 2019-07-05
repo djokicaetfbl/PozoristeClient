@@ -30,6 +30,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -73,9 +74,8 @@ public class PregledRepertoaraController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        buttonNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
         try{
-
-
         // odredi adresu racunara sa kojim se povezujemo
         // (povezujemo se sa nasim racunarom)
         InetAddress addr = InetAddress.getByName(Pozoriste.HOST);
@@ -398,6 +398,7 @@ public class PregledRepertoaraController implements Initializable {
             Parent pregledKarataController = FXMLLoader.load(getClass().getResource("/view/PregledKarata.fxml"));
             Scene scene = new Scene(pregledKarataController);
             Stage stage = (Stage) buttonNazad.getScene().getWindow();
+            stage.centerOnScreen();
             stage.getIcons().add(new Image(PregledKarataController.class.getResourceAsStream("/resursi/drama.png")));
             stage.setScene(scene);
             stage.setTitle("Karte " + "za predstavu " + predstavaSaKojomRadim);
@@ -442,6 +443,7 @@ public class PregledRepertoaraController implements Initializable {
             Parent adminController = FXMLLoader.load(getClass().getResource("/view/Admin.fxml"));
             Scene adminControllerScene = new Scene(adminController);
             Stage window = (Stage) buttonNazad.getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(adminControllerScene);
             window.show();
         } catch (IOException ex) {

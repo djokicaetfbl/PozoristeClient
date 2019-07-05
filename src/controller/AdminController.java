@@ -67,6 +67,7 @@ public class AdminController implements Initializable {
             Parent radnikController = FXMLLoader.load(getClass().getResource("/view/PregledRadnika.fxml"));
             Scene radnikScene = new Scene(radnikController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setTitle("Radnici");
             window.setScene(radnikScene);
 
@@ -83,6 +84,7 @@ public class AdminController implements Initializable {
 
             Scene repertoarScene = new Scene(repertoarController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setTitle("Repertoar");
             window.setScene(repertoarScene);
             window.setResizable(false);
@@ -98,6 +100,7 @@ public class AdminController implements Initializable {
 
             Scene predstavaScene = new Scene(predstavaController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setTitle("Predstave");
             window.setScene(predstavaScene);
             window.show();

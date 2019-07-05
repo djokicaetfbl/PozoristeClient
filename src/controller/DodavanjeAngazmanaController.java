@@ -33,6 +33,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.Angazman;
@@ -253,6 +255,7 @@ public class DodavanjeAngazmanaController implements Initializable {
             }
             Stage stage = new Stage();
             Scene scene = new Scene(root);
+            stage.centerOnScreen();
             stage.setTitle("Dodaj vrstu angazmana");
             stage.setScene(scene);
             stage.setResizable(false);
@@ -338,6 +341,7 @@ public class DodavanjeAngazmanaController implements Initializable {
 
             Scene predstavaScene = new Scene(predstavaController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(predstavaScene);
             window.setResizable(false);
             window.setTitle("Vrsta angazmana");
@@ -349,6 +353,8 @@ public class DodavanjeAngazmanaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        buttonDodaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
+        buttonOK.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
         try {
             // odredi adresu racunara sa kojim se povezujemo
             // (povezujemo se sa nasim racunarom)
