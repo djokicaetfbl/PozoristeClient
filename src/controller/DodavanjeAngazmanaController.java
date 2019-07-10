@@ -12,10 +12,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,8 +43,6 @@ import model.dto.Predstava;
 import model.dto.Umjetnik;
 import model.dto.VrstaAngazmana;
 import util.ProtocolMessages;
-
-import static controller.PregledKarataController.terminPredstave;
 
 
 public class DodavanjeAngazmanaController implements Initializable {

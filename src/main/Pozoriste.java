@@ -1,8 +1,6 @@
 package main;
 
 import java.io.*;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -39,7 +37,7 @@ public class Pozoriste extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setTitle("Login");
+        stage.setTitle("Logovanje");
         stage.getIcons().add(new Image(Pozoriste.class.getResourceAsStream("/resursi/drama.png")));
         stage.show();
     }

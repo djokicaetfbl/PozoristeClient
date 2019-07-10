@@ -20,7 +20,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class AdminController implements Initializable {
 
@@ -34,7 +33,10 @@ public class AdminController implements Initializable {
     private Button bPregledRepertoara;
 
     @FXML 
-    private Button buttonStatistika; 
+    private Button buttonStatistika;
+
+    @FXML
+    private Button bIzlaz;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,6 +51,7 @@ public class AdminController implements Initializable {
         buttonStatistika.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/Statistics_48px.png"))));
         bPregledRepertoara.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/Report Card_48px.png"))));
         bPregledRadnika.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/Find User Male_48px.png"))));
+        bIzlaz.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_logout.png"))));
     }
 
     private void izaberiFolderZaStatistiku() {
@@ -62,7 +65,24 @@ public class AdminController implements Initializable {
         }
     }
 
-    public void PregledRadnikaAction(ActionEvent event) {
+    @FXML
+    void nazadNaLoginFormu(ActionEvent event) {
+        try {
+            Parent loginController = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+            Scene loginScene = new Scene(loginController);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setTitle("Logovanje");
+            window.setScene(loginScene);
+            window.show();
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
+        } catch (IOException ex) {
+            Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void pregledRadnikaAction(ActionEvent event) {
         try {
             Parent radnikController = FXMLLoader.load(getClass().getResource("/view/PregledRadnika.fxml"));
             Scene radnikScene = new Scene(radnikController);
@@ -78,7 +98,7 @@ public class AdminController implements Initializable {
         }
     }
 
-    public void PregledRepertoaraAction(ActionEvent event) {
+    public void pregledRepertoaraAction(ActionEvent event) {
 
         try {
             Parent repertoarController = FXMLLoader.load(getClass().getResource("/view/PregledSvihRepertoara.fxml"));
@@ -98,7 +118,7 @@ public class AdminController implements Initializable {
         }
     }
 
-    public void PregledPredstavaAction(ActionEvent event) {
+    public void pregledPredstavaAction(ActionEvent event) {
         try {
             Parent predstavaController = FXMLLoader.load(getClass().getResource("/view/PregledPredstava.fxml"));
 

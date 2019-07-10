@@ -7,11 +7,6 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +24,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.Pozoriste;
@@ -58,6 +52,7 @@ public class LogInController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        bPotvrda.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_login.png"))));
         lKorisnik.setGraphic(new ImageView(new Image(PregledKarataController.class.getResourceAsStream("/resursi/rsz_korisnik.png"))));
         lSifra.setGraphic(new ImageView(new Image(PregledKarataController.class.getResourceAsStream("/resursi/rsz_sifra.png"))));
     }
@@ -119,42 +114,47 @@ public class LogInController implements Initializable {
 
     @FXML
     void potvrdaAction(ActionEvent event) throws IOException {
-        if (provjeraAutentifikacije(tfKorisnickoIme.getText(), tfLozinka.getText())) {
-            //idLogovanog=AdministratorDAO.vratiId(tfKorisnickoIme.getText());
-            if ("Administrator".equals(tipKorisnika)) {
-                try {
-                    Parent pozoristeController = FXMLLoader.load(getClass().getResource("/view/Admin.fxml"));
-                    Scene pozScene = new Scene(pozoristeController);
-                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    window.setTitle("Administrator");
-                    window.setResizable(false);
-                    window.setScene(pozScene);
-                    window.show();
+        if(!tfKorisnickoIme.getText().isEmpty() && !tfLozinka.getText().isEmpty()) {
+            if (provjeraAutentifikacije(tfKorisnickoIme.getText(), tfLozinka.getText())) {
+                //idLogovanog=AdministratorDAO.vratiId(tfKorisnickoIme.getText());
+                if ("Administrator".equals(tipKorisnika)) {
+                    try {
+                        Parent pozoristeController = FXMLLoader.load(getClass().getResource("/view/Admin.fxml"));
+                        Scene pozScene = new Scene(pozoristeController);
+                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        window.setTitle("Administrator");
+                        window.setResizable(false);
+                        window.setScene(pozScene);
+                        window.show();
 
-                    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-                    window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
-                    window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
-                } catch (IOException ex) {
-                    Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if ("Biletar".equals(tipKorisnika)) {
-                try {
-                    Parent pozoristeController = FXMLLoader.load(getClass().getResource("/view/PregledRepertoara.fxml"));
-                    Scene pozScene = new Scene(pozoristeController);
-                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    window.setTitle("Biletar");
-                    window.setResizable(false);
-                    window.setScene(pozScene);
-                    window.show();
+                        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                        window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+                        window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
 
-                    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-                    window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
-                    window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
-                } catch (IOException ex) {
-                    Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else if ("Biletar".equals(tipKorisnika)) {
+                    try {
+                        Parent pozoristeController = FXMLLoader.load(getClass().getResource("/view/PregledRepertoara.fxml"));
+                        Scene pozScene = new Scene(pozoristeController);
+                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        window.setTitle("Biletar");
+                        window.setResizable(false);
+                        window.setScene(pozScene);
+                        window.show();
+
+                        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                        window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+                        window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+
             }
-
+        } else {
+            upozorenjeLogovanje();
         }
     }
 

@@ -13,9 +13,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 import javafx.application.Platform;
-import javafx.event.EventType;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,13 +33,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -72,8 +68,33 @@ public class PregledRepertoaraController implements Initializable {
 
     private VBox vBox = null;
 
+    @FXML
+    private Button bIzlaz;
+
+    @FXML
+    void nazadNaLoginFormu(ActionEvent event) {
+        try {
+            Parent loginController = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+            Scene loginScene = new Scene(loginController);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setTitle("Logovanje");
+            window.setScene(loginScene);
+            window.show();
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
+        } catch (IOException ex) {
+            Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if("Administrator".equals(LogInController.tipKorisnika)){
+            bIzlaz.setVisible(false);
+        }else {
+            bIzlaz.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_logout.png"))));
+        }
         buttonNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
         try{
         // odredi adresu racunara sa kojim se povezujemo

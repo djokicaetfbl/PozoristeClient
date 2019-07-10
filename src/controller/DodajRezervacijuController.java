@@ -25,7 +25,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.dto.Rezervacija;
-import model.dto.RezervisanoSjediste;
 import util.ProtocolMessages;
 import static controller.PregledKarataController.terminPredstave;
 import static controller.PregledKarataController.scenaZaPrikaz;
