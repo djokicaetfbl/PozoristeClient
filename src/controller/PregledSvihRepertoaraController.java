@@ -285,6 +285,7 @@ public class PregledSvihRepertoaraController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	sviRepertoariTableView.setStyle("-fx-selection-bar: #90c8ff; -fx-selection-bar-non-focused: #acfaad;");
 		bNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
 		bIzmjeniRepertoar.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_editproperty_48px.png"))));
 		bDodajRepertoar.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_plus.png"))));

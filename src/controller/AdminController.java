@@ -45,6 +45,7 @@ public class AdminController implements Initializable {
         bPregledPredstave.setStyle("-fx-background-color: #90c8ff");
         bPregledRepertoara.setStyle("-fx-background-color: #e6e6e6");
         bPregledRadnika.setStyle("-fx-background-color: #90c8ff");
+        bIzlaz.setStyle("-fx-background-color: #e6e6e6");
         
         buttonStatistika.setStyle("-fx-background-color: #e6e6e6");
         bPregledPredstave.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/Theatre Mask_48px.png"))));

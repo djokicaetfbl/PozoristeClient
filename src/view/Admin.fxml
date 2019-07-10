@@ -30,7 +30,7 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets></VBox>
-      <Button fx:id="bIzlaz" layoutX="14.0" layoutY="448.0" mnemonicParsing="false" onAction="#nazadNaLoginFormu" prefHeight="60.0" prefWidth="110.0" text="Izlaz">
+      <Button fx:id="bIzlaz" cancelButton="true" layoutX="14.0" layoutY="448.0" mnemonicParsing="false" onAction="#nazadNaLoginFormu" prefHeight="60.0" prefWidth="110.0" text="Izlaz">
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font>

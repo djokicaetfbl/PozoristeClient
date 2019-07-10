@@ -164,6 +164,7 @@ public class PregledRadnikaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        radniciTableView.setStyle("-fx-selection-bar: #90c8ff; -fx-selection-bar-non-focused: #acfaad;");
         bDodaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_plus.png"))));
         bIzmjeni.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_editproperty_48px.png"))));
         bPretrazi.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/search.png"))));

@@ -39,6 +39,8 @@ import model.dto.GostujucaPredstava;
 import model.dto.Predstava;
 import util.ProtocolMessages;
 
+import javax.swing.plaf.synth.Region;
+
 public class PregledPredstavaController implements Initializable {
 
     @FXML 
@@ -188,6 +190,11 @@ public class PregledPredstavaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        tablePredstave.setStyle("-fx-selection-bar: #90c8ff; -fx-selection-bar-non-focused: #acfaad;");
+        tableGostujucePredstave.setStyle("-fx-selection-bar: #90c8ff; -fx-selection-bar-non-focused: #acfaad;");
+        textAreaOpisPredstave.setStyle("-fx-background-color: #acfaad");
+        textAreaOpisGostujucePredstave.setStyle("-fx-background-color: #acfaad");
+        textAreaGlumciGostujucePredstave.setStyle("-fx-background-color: #acfaad");
         buttonIzmijeniPredstavu.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_editproperty_48px.png"))));
         buttonIzmijeniGostujucuPredstavu.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_editproperty_48px.png"))));
         buttonDodaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_plus.png"))));
