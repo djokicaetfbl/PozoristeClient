@@ -67,11 +67,12 @@ public class AdminController implements Initializable {
             Parent radnikController = FXMLLoader.load(getClass().getResource("/view/PregledRadnika.fxml"));
             Scene radnikScene = new Scene(radnikController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
             window.setTitle("Radnici");
             window.setScene(radnikScene);
-
             window.show();
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -84,11 +85,14 @@ public class AdminController implements Initializable {
 
             Scene repertoarScene = new Scene(repertoarController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
             window.setTitle("Repertoar");
             window.setScene(repertoarScene);
             window.setResizable(false);
             window.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -100,10 +104,13 @@ public class AdminController implements Initializable {
 
             Scene predstavaScene = new Scene(predstavaController);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
             window.setTitle("Predstave");
             window.setScene(predstavaScene);
             window.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
         }

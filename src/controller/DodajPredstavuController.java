@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,6 +27,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.Azuriranje;
@@ -276,6 +278,10 @@ public class DodajPredstavuController implements Initializable {
             window.setResizable(false);
             window.setTitle("Predstave");
             window.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -383,6 +389,10 @@ public class DodajPredstavuController implements Initializable {
             window.setResizable(false);
             window.setTitle("Angazman");
             window.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
         }

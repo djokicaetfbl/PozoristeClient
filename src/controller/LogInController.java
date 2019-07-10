@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,6 +29,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import util.ProtocolMessages;
@@ -121,15 +124,16 @@ public class LogInController implements Initializable {
             if ("Administrator".equals(tipKorisnika)) {
                 try {
                     Parent pozoristeController = FXMLLoader.load(getClass().getResource("/view/Admin.fxml"));
-
                     Scene pozScene = new Scene(pozoristeController);
                     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    window.centerOnScreen();
                     window.setTitle("Administrator");
                     window.setResizable(false);
-
                     window.setScene(pozScene);
                     window.show();
+
+                    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                    window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+                    window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
                 } catch (IOException ex) {
                     Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -142,6 +146,10 @@ public class LogInController implements Initializable {
                     window.setResizable(false);
                     window.setScene(pozScene);
                     window.show();
+
+                    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                    window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+                    window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
                 } catch (IOException ex) {
                     Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
                 }

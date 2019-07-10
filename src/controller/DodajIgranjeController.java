@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,6 +39,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.GostujucaPredstava;
@@ -250,6 +252,10 @@ public class DodajIgranjeController implements Initializable {
             window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -265,6 +271,10 @@ public class DodajIgranjeController implements Initializable {
             window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(DodajIgranjeController.class.getName()).log(Level.SEVERE, null, ex);
         }

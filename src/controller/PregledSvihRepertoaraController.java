@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,6 +35,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.Igranje;
@@ -81,6 +83,10 @@ public class PregledSvihRepertoaraController implements Initializable {
                 window.centerOnScreen();
                 window.setScene(dodajRadnikaScene);
                 window.show();
+
+				Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+				window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+				window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
             } catch (IOException ex) {
                 Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -225,6 +231,10 @@ public class PregledSvihRepertoaraController implements Initializable {
 	                    window.centerOnScreen();
 	                    window.setScene(pregledRepertoara);
 	                    window.show();
+
+						Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+						window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+						window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
 	                } catch (IOException ex) {
 	                    Logger.getLogger(PregledSvihRepertoaraController.class.getName()).log(Level.SEVERE, null, ex);
 	                }
@@ -247,6 +257,10 @@ public class PregledSvihRepertoaraController implements Initializable {
             window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
+
+			Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+			window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+			window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -262,6 +276,10 @@ public class PregledSvihRepertoaraController implements Initializable {
             window.centerOnScreen();
             window.setScene(dodajRadnikaScene);
             window.show();
+
+			Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+			window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+			window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
         }

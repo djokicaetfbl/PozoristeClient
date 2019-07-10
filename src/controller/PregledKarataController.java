@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,6 +34,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.*;
@@ -240,6 +242,10 @@ public class PregledKarataController implements Initializable {
             window.centerOnScreen();
             window.setScene(scene);
             window.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(PregledKarataController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -607,6 +613,10 @@ public class PregledKarataController implements Initializable {
                     postavi();
             });
             stage.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+            stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
 
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Prvo izaberite sjedista koja zelite rezervisati!", ButtonType.OK);

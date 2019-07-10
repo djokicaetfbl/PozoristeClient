@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,6 +36,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.Angazman;
@@ -255,7 +257,6 @@ public class DodavanjeAngazmanaController implements Initializable {
             }
             Stage stage = new Stage();
             Scene scene = new Scene(root);
-            stage.centerOnScreen();
             stage.setTitle("Dodaj vrstu angazmana");
             stage.setScene(scene);
             stage.setResizable(false);
@@ -329,6 +330,10 @@ public class DodavanjeAngazmanaController implements Initializable {
                 comboBoxVrstaAngazmana.setItems(pomocni);
             });
             stage.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+            stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
         }catch(IOException ee){
             ee.printStackTrace();
         }
@@ -346,6 +351,10 @@ public class DodavanjeAngazmanaController implements Initializable {
             window.setResizable(false);
             window.setTitle("Vrsta angazmana");
             window.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(DodavanjeAngazmanaController.class.getName()).log(Level.SEVERE, null, ex);
         }

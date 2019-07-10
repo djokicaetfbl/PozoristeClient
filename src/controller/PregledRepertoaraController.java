@@ -404,6 +404,10 @@ public class PregledRepertoaraController implements Initializable {
             stage.setTitle("Karte " + "za predstavu " + predstavaSaKojomRadim);
             stage.setResizable(false);
             stage.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+            stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
         } catch (Exception ex) {
             //Logger.getLogger(PregledPredstavaController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -446,6 +450,10 @@ public class PregledRepertoaraController implements Initializable {
             window.centerOnScreen();
             window.setScene(adminControllerScene);
             window.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         } catch (IOException ex) {
             Logger.getLogger(PregledRepertoaraController.class.getName()).log(Level.SEVERE, null, ex);
         }
