@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-07-11T20:04:19</date>
-  <millis>1562868259725</millis>
+  <date>2019-07-11T20:25:28</date>
+  <millis>1562869528870</millis>
   <sequence>0</sequence>
   <logger>javafx</logger>
   <level>WARNING</level>
@@ -13,8 +13,8 @@
   <message>Loading FXML document with JavaFX API of version 11.0.1 by JavaFX runtime of version 8.0.191</message>
 </record>
 <record>
-  <date>2019-07-11T20:04:28</date>
-  <millis>1562868268876</millis>
+  <date>2019-07-11T20:25:39</date>
+  <millis>1562869539064</millis>
   <sequence>1</sequence>
   <logger>javafx</logger>
   <level>WARNING</level>
@@ -24,20 +24,9 @@
   <message>Loading FXML document with JavaFX API of version 11.0.1 by JavaFX runtime of version 8.0.191</message>
 </record>
 <record>
-  <date>2019-07-11T20:04:35</date>
-  <millis>1562868275540</millis>
+  <date>2019-07-11T20:25:47</date>
+  <millis>1562869547288</millis>
   <sequence>2</sequence>
-  <logger>javafx</logger>
-  <level>WARNING</level>
-  <class>javafx.fxml.FXMLLoader$ValueElement</class>
-  <method>processValue</method>
-  <thread>14</thread>
-  <message>Loading FXML document with JavaFX API of version 11.0.1 by JavaFX runtime of version 8.0.191</message>
-</record>
-<record>
-  <date>2019-07-11T20:04:39</date>
-  <millis>1562868279217</millis>
-  <sequence>3</sequence>
   <logger>javafx</logger>
   <level>WARNING</level>
   <class>javafx.fxml.FXMLLoader$ValueElement</class>
