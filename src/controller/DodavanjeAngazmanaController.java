@@ -359,6 +359,8 @@ public class DodavanjeAngazmanaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       // comboBoxVrstaAngazmana.getItems().addAll("Reditelj","Koreograf","Dirigent","Scenograf","Kostimograf","Tonac","Dizajner osvjetljenja","Asistent reditelja","Asistent koreografa"
+       // ,"Korepetitor");
         buttonDodaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
         buttonOK.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
         try {
