@@ -169,6 +169,7 @@ public class PregledRadnikaController implements Initializable {
         bIzmjeni.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_editproperty_48px.png"))));
         bPretrazi.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/search.png"))));
         bNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
+        taBiografija.setStyle("-fx-background-color: #acfaad");
     	try {
     		radniciObservableList.clear();
 	        taBiografija.setEditable(false);

@@ -117,17 +117,24 @@ public class PregledPredstavaController implements Initializable {
     @FXML
     void dodajAction(ActionEvent event) {
         String temp = comboBoxTip.getValue();
-        if ("Predstava".equals(temp)) {
-            DodajPredstavuController.setDomacaPredstava(true);
-            DodajPredstavuController.setDodavanje(true);
-            DodajPredstavuController.setPredstava(null);
+        if(!comboBoxTip.getSelectionModel().isEmpty()) {
+            if ("Predstava".equals(temp)) {
+                DodajPredstavuController.setDomacaPredstava(true);
+                DodajPredstavuController.setDodavanje(true);
+                DodajPredstavuController.setPredstava(null);
+            } else {
+                DodajPredstavuController.setDomacaPredstava(false);
+                DodajPredstavuController.setDodavanje(true);
+                DodajPredstavuController.setPredstava(null);
+            }
+            otvoriDodajPredstavu(event);
         } else {
-            DodajPredstavuController.setDomacaPredstava(false);
-            DodajPredstavuController.setDodavanje(true);
-            DodajPredstavuController.setPredstava(null);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Izaberite tip predstave!");
+            alert.showAndWait();
         }
-        otvoriDodajPredstavu(event);
-
     }
 
     @FXML

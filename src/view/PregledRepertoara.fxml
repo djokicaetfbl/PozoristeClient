@@ -32,8 +32,8 @@
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="462.0" prefWidth="900.0" />
         </content>
       </ScrollPane>
-      <Button fx:id="buttonNazad" layoutX="14.0" layoutY="546.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="112.0" text="Nazad" />
-      <Button fx:id="bIzlaz" cancelButton="true" layoutX="15.0" layoutY="526.0" mnemonicParsing="false" onAction="#nazadNaLoginFormu" prefHeight="60.0" prefWidth="110.0" text="Izlaz">
+      <Button fx:id="buttonNazad" layoutX="14.0" layoutY="546.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="112.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Nazad" />
+      <Button fx:id="bIzlaz" cancelButton="true" layoutX="15.0" layoutY="526.0" mnemonicParsing="false" onAction="#nazadNaLoginFormu" prefHeight="60.0" prefWidth="110.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Izlaz">
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font>
