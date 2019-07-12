@@ -325,7 +325,7 @@ public class IzvjestajProdatihKarataController {
                         String[] karteLines=response1.split(ProtocolMessages.LINE_SEPARATOR.getMessage());
                         for(int j=0; j<karteLines.length; j++){
                             String[] kartaString=karteLines[j].split(ProtocolMessages.MESSAGE_SEPARATOR.getMessage());
-                            if(i==0){
+                            if(j==0){
 //                  Karta(Integer id,Integer brojReda,Integer brojSjedista,Date termin,Integer idScene)
                                 Date termin = null;
                                 try {
