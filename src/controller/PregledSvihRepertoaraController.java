@@ -223,7 +223,7 @@ public class PregledSvihRepertoaraController implements Initializable {
 	                    if (dobaviSvjeze.isPresent()) {
 	                        PregledRepertoaraController.incijalizacija(dobaviSvjeze.get());
 	                    }
-	                    Parent adminController = FXMLLoader.load(getClass().getResource("view/PregledRepertoara.fxml"));
+	                    Parent adminController = FXMLLoader.load(getClass().getResource("/view/PregledRepertoara.fxml"));
 	                    Scene pregledRepertoara = new Scene(adminController);
 	                    Stage window = (Stage) sviRepertoariTableView.getScene().getWindow();
 	                    window.centerOnScreen();
