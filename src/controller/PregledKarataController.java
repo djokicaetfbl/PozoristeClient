@@ -97,7 +97,7 @@ public class PregledKarataController implements Initializable {
         labelProdato.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/red.png"))));
 
         if(PregledRepertoaraController.igranjeProslo){
-            buttonObrisiRezervaciju.setDisable(true);
+           buttonObrisiRezervaciju.setDisable(true);
             buttonStorniraj.setDisable(true);
             buttonRezervisi.setDisable(true);
             buttonProdaja.setDisable(true);
@@ -373,6 +373,7 @@ public class PregledKarataController implements Initializable {
                     double fontSize = 11.0;
                     buttonMatrix[i][j].setMinHeight(40);
                     buttonMatrix[i][j].setMinWidth(40);
+                    buttonMatrix[i][j].setDisable(PregledRepertoaraController.igranjeProslo);
 
                     if (karteProdate.stream().filter(k -> k.getBrojSjedista() == brojSjedista && k.getTermin().equals(terminPredstave)).findAny().isPresent()
                             && !listRezervisanih.stream().filter(e -> e.getBrojSjedista().equals(brojSjedista)).findAny().isPresent()) {

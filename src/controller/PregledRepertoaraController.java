@@ -404,6 +404,7 @@ public class PregledRepertoaraController implements Initializable {
             java.util.Date dat=format.parse(string);
             Date date = new Date(dat.getTime());
             igranjePodBrojem=0;
+            igranjeProslo = false;
             PregledRepertoaraController.listaDatumaRepertoara.stream().forEach(p -> {
                 if(date.toLocalDate().getDayOfMonth() == p.toLocalDate().getDayOfMonth()
                 && date.toLocalDate().getYear() == p.toLocalDate().getYear()

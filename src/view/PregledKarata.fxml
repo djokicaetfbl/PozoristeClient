@@ -40,7 +40,7 @@
                      <children>
                         <HBox alignment="TOP_CENTER" prefHeight="29.0" prefWidth="670.0">
                            <children>
-                              <Label text="Scena" />
+                              <Label style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Scena" />
                            </children>
                         </HBox>
                         <HBox prefHeight="493.0" prefWidth="678.0">
@@ -55,19 +55,19 @@
                         <HBox prefHeight="52.0" prefWidth="222.0" spacing="10.0">
                            <children>
                               <Label fx:id="labelSlobodno" prefHeight="32.0" prefWidth="32.0" />
-                              <Label prefHeight="32.0" text="Slobdono sjedište" />
+                              <Label prefHeight="32.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Slobdono sjedište" />
                            </children>
                         </HBox>
                         <HBox prefHeight="46.0" prefWidth="222.0" spacing="10.0">
                            <children>
                               <Label fx:id="labelRezervisano" prefHeight="32.0" prefWidth="32.0" />
-                              <Label prefHeight="32.0" text="Rezervisano sjedište" />
+                              <Label prefHeight="32.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Rezervisano sjedište" />
                            </children>
                         </HBox>
                         <HBox prefHeight="46.0" prefWidth="222.0" spacing="10.0">
                            <children>
                               <Label fx:id="labelProdato" prefHeight="32.0" prefWidth="32.0" />
-                              <Label prefHeight="32.0" text="Karta Prodata" />
+                              <Label prefHeight="32.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Karta Prodata" />
                            </children>
                         </HBox>
                         <HBox prefHeight="82.0" prefWidth="222.0">
@@ -93,13 +93,14 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="200.0">
                <children>
                   <Button fx:id="buttonNazad" mnemonicParsing="false" prefHeight="40.0" prefWidth="149.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;; -fx-font-size: 18;" text="Nazad">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
                   </Button>
+                  <Label fx:id="labelProslaUpozorenje" prefHeight="34.0" prefWidth="432.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" />
                </children>
             </HBox>
          </children>
