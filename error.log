@@ -2,25 +2,47 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-07-13T13:11:18</date>
-  <millis>1563016278258</millis>
+  <date>2019-07-14T00:15:57</date>
+  <millis>1563056157125</millis>
   <sequence>0</sequence>
   <logger>javafx</logger>
   <level>WARNING</level>
   <class>javafx.fxml.FXMLLoader$ValueElement</class>
   <method>processValue</method>
-  <thread>14</thread>
-  <message>Loading FXML document with JavaFX API of version 11.0.1 by JavaFX runtime of version 8.0.191</message>
+  <thread>15</thread>
+  <message>Loading FXML document with JavaFX API of version 11.0.1 by JavaFX runtime of version 8.0.192</message>
 </record>
 <record>
-  <date>2019-07-13T13:11:37</date>
-  <millis>1563016297291</millis>
+  <date>2019-07-14T00:16:01</date>
+  <millis>1563056161642</millis>
   <sequence>1</sequence>
   <logger>javafx</logger>
   <level>WARNING</level>
   <class>javafx.fxml.FXMLLoader$ValueElement</class>
   <method>processValue</method>
-  <thread>14</thread>
-  <message>Loading FXML document with JavaFX API of version 11.0.1 by JavaFX runtime of version 8.0.191</message>
+  <thread>15</thread>
+  <message>Loading FXML document with JavaFX API of version 11.0.1 by JavaFX runtime of version 8.0.192</message>
+</record>
+<record>
+  <date>2019-07-14T00:16:03</date>
+  <millis>1563056163734</millis>
+  <sequence>2</sequence>
+  <logger>javafx</logger>
+  <level>WARNING</level>
+  <class>javafx.fxml.FXMLLoader$ValueElement</class>
+  <method>processValue</method>
+  <thread>15</thread>
+  <message>Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.192</message>
+</record>
+<record>
+  <date>2019-07-14T00:16:08</date>
+  <millis>1563056168538</millis>
+  <sequence>3</sequence>
+  <logger>javafx</logger>
+  <level>WARNING</level>
+  <class>javafx.fxml.FXMLLoader$ValueElement</class>
+  <method>processValue</method>
+  <thread>15</thread>
+  <message>Loading FXML document with JavaFX API of version 11.0.1 by JavaFX runtime of version 8.0.192</message>
 </record>
 </log>

@@ -8,6 +8,11 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalField;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -66,7 +71,13 @@ public class PregledRepertoaraController implements Initializable {
 
     private static Repertoar repertoarZaPrikaz;
 
+    public static List<Date> listaDatumaRepertoara = new ArrayList<>();
+
+    private static int igranjePodBrojem=0;
+
     private VBox vBox = null;
+
+    public static boolean igranjeProslo = false;
 
     @FXML
     private Button bIzlaz;
@@ -83,8 +94,9 @@ public class PregledRepertoaraController implements Initializable {
             Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
             window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
             window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
+            listaDatumaRepertoara.clear();
         } catch (IOException ex) {
-            Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PregledRepertoaraController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -297,6 +309,8 @@ public class PregledRepertoaraController implements Initializable {
             });
             repertoarZaPrikaz.getIgranja().sort(Comparator.comparing(e -> e.getTermin()));
 
+            PregledRepertoaraController.listaDatumaRepertoara.clear();
+            System.out.println("obrisao");
             for (Integer i = 0; i < repertoarZaPrikaz.getIgranja().size(); i++) {
                 HBox hBox = new HBox();
                 Label vrijeme = new Label();
@@ -309,13 +323,23 @@ public class PregledRepertoaraController implements Initializable {
                     stringZaPrikaz += predstave.stream().filter(e -> e.getId() == igranje.getIdPredstave()).findFirst().get().getNaziv();
 
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd:hh-mm");
-                    vrijeme.setText(format.format(igranje.getTermin()));
+                    //vrijeme.setText(format.format(igranje.getTermin()));
+                    Date datumIgranja = igranje.getTermin();
+                    listaDatumaRepertoara.add(datumIgranja);
+                    LocalDate ld = datumIgranja.toLocalDate();
+                    LocalDateTime ldt = LocalDateTime.of(ld.getYear(),ld.getMonthValue(),ld.getDayOfMonth(),20,0);
+                    vrijeme.setText(ldt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd:HH-mm")));
                 }
                 if (igranje.getIdGostujucePredstave() != 0) {
                     stringZaPrikaz += gostujuce.stream().filter(e -> e.getId() == igranje.getIdGostujucePredstave()).findFirst().get().getNaziv();
 
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd:hh-mm");
-                    vrijeme.setText(format.format(igranje.getTermin()));
+                    //vrijeme.setText(format.format(igranje.getTermin()));
+                    Date datumIgranja = igranje.getTermin();
+                    listaDatumaRepertoara.add(datumIgranja);
+                    LocalDate ld = datumIgranja.toLocalDate();
+                    LocalDateTime ldt = LocalDateTime.of(ld.getYear(),ld.getMonthValue(),ld.getDayOfMonth(),20,0);
+                    vrijeme.setText(ldt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd:HH-mm")));
                 }
                 Label nazivLabel = new Label(stringZaPrikaz);
                 nazivLabel.setId(i.toString());
@@ -379,7 +403,19 @@ public class PregledRepertoaraController implements Initializable {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd:hh-mm", Locale.GERMANY);
             java.util.Date dat=format.parse(string);
             Date date = new Date(dat.getTime());
-            zeljenoIgranje = repertoarZaPrikaz.getIgranja().stream().filter(e -> e.getTermin().equals(date)).findFirst().get();
+            igranjePodBrojem=0;
+            PregledRepertoaraController.listaDatumaRepertoara.stream().forEach(p -> {
+                if(date.toLocalDate().getDayOfMonth() == p.toLocalDate().getDayOfMonth()
+                && date.toLocalDate().getYear() == p.toLocalDate().getYear()
+                && date.toLocalDate().getMonthValue() == p.toLocalDate().getMonthValue()){
+                    if(LocalDate.now().isAfter(date.toLocalDate())){
+                        igranjeProslo = true;
+                    }
+                }else{
+                    igranjePodBrojem++;
+                }
+            });
+            zeljenoIgranje = repertoarZaPrikaz.getIgranja().stream().filter(e -> e.getTermin().equals(listaDatumaRepertoara.get(igranjePodBrojem))).findFirst().get();
         } catch (Exception e) {
             Logger.getLogger(PregledPredstavaController.class.getName()).log(Level.SEVERE, null, e);
         }

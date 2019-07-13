@@ -21,13 +21,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.Pozoriste;
@@ -60,9 +58,21 @@ public class PregledKarataController implements Initializable {
     @FXML // fx:id="comboBoxKarte"
     private ComboBox<Karta> comboBoxKarte; // Value injected by FXMLLoader
 
-    private final Integer RED = 10;
+    @FXML // fx:id="labelSlobodno"
+    private Label labelSlobodno; // Value injected by FXMLLoader
 
-    private final Integer KOLONA = 10;
+    @FXML // fx:id="labelRezervisano"
+    private Label labelRezervisano; // Value injected by FXMLLoader
+
+    @FXML // fx:id="labelProdato"
+    private Label labelProdato; // Value injected by FXMLLoader
+
+    @FXML // fx:id="labelProslaUpozorenje"
+    private Label labelProslaUpozorenje; // Value injected by FXMLLoader
+
+    private final Integer RED = 8;
+
+    private final Integer KOLONA = 13;
 
     public static Scena scenaZaPrikaz;
 
@@ -81,6 +91,22 @@ public class PregledKarataController implements Initializable {
         buttonProdaja.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
         buttonStorniraj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/warning.png"))));
         buttonNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
+
+        labelSlobodno.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/Green.png"))));
+        labelRezervisano.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/orange.png"))));
+        labelProdato.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/red.png"))));
+
+        if(PregledRepertoaraController.igranjeProslo){
+            buttonObrisiRezervaciju.setDisable(true);
+            buttonStorniraj.setDisable(true);
+            buttonRezervisi.setDisable(true);
+            buttonProdaja.setDisable(true);
+            comboBoxKarte.setDisable(true);
+            comboRezervacije.setDisable(true);
+            labelProslaUpozorenje.setText("Predstava je vec odigrana!");
+        }
+
+
         try{
         // odredi adresu racunara sa kojim se povezujemo
         // (povezujemo se sa nasim racunarom)
@@ -230,6 +256,7 @@ public class PregledKarataController implements Initializable {
 
     private void buttonNazadSetAction() {
         try {
+            PregledRepertoaraController.listaDatumaRepertoara.clear();
             Parent pregledRepertoaraController = FXMLLoader.load(getClass().getResource("/view/PregledRepertoara.fxml"));
             Scene scene = new Scene(pregledRepertoaraController);
             Stage window = (Stage) buttonNazad.getScene().getWindow();
@@ -343,25 +370,40 @@ public class PregledKarataController implements Initializable {
                     buttonMatrix[i][j].setDisable(false);
                     final Integer brojSjedista = i * KOLONA + j;
                     buttonMatrix[i][j].setId(brojSjedista.toString());
+                    double fontSize = 11.0;
+                    buttonMatrix[i][j].setMinHeight(40);
+                    buttonMatrix[i][j].setMinWidth(40);
 
                     if (karteProdate.stream().filter(k -> k.getBrojSjedista() == brojSjedista && k.getTermin().equals(terminPredstave)).findAny().isPresent()
                             && !listRezervisanih.stream().filter(e -> e.getBrojSjedista().equals(brojSjedista)).findAny().isPresent()) {
                         buttonMatrix[i][j].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/red.png"))));
                         buttonMatrix[i][j].setDisable(true);
+                        buttonMatrix[i][j].setFont(Font.font(fontSize));
+                        buttonMatrix[i][j].setText(i * KOLONA + j + 1 + "");
+                        buttonMatrix[i][j].setContentDisplay(ContentDisplay.TOP);
                     }
 
                     if (listRezervisanih.stream().filter(r -> r.getBrojSjedista() == brojSjedista && r.getTermin().equals(terminPredstave) && r.getIdScene() == scenaZaPrikaz.getIdScene())
                             .findAny().isPresent()) {
                         buttonMatrix[i][j].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/orange.png"))));
                         buttonMatrix[i][j].setDisable(true);
+                        buttonMatrix[i][j].setContentDisplay(ContentDisplay.TOP);
+                        buttonMatrix[i][j].setFont(Font.font(fontSize));
+                        buttonMatrix[i][j].setText(i * KOLONA + j +  1 +"");
                     }
 
                     if (!listRezervisanih.stream().filter(e -> e.getBrojSjedista().equals(brojSjedista)).findAny().isPresent()
                             && !karteProdate.stream().filter(k -> k.getBrojSjedista() == brojSjedista && k.getTermin().equals(terminPredstave)).findAny().isPresent()) {
                         buttonMatrix[i][j].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/Green.png"))));
+                        buttonMatrix[i][j].setContentDisplay(ContentDisplay.TOP);
+                        buttonMatrix[i][j].setFont(Font.font(fontSize));
+                        buttonMatrix[i][j].setText(i * KOLONA + j +  1 +"");
                     } else if (!karteProdate.stream().filter(k -> k.getBrojSjedista() == brojSjedista).findFirst().isPresent()
                             && listRezervisanih.stream().filter(e -> e.getBrojSjedista().equals(brojSjedista)).findAny().isPresent()) {
                         buttonMatrix[i][j].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/orange.png"))));
+                        buttonMatrix[i][j].setContentDisplay(ContentDisplay.TOP);
+                        buttonMatrix[i][j].setFont(Font.font(fontSize));
+                        buttonMatrix[i][j].setText(i * KOLONA + j + 1 + "");
                     }
                     buttonMatrix[i][j].setId(new Integer(i * KOLONA + j).toString());
                     
