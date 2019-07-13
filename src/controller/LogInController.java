@@ -152,6 +152,8 @@ public class LogInController implements Initializable {
                     }
                 }
 
+            } else {
+                upozorenjeLogovanje();
             }
         } else {
             upozorenjeLogovanje();
