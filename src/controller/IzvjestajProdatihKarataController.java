@@ -7,6 +7,9 @@ import java.net.Socket;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 import java.util.function.Consumer;
@@ -36,6 +39,24 @@ public class IzvjestajProdatihKarataController {
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+
+    private static HashMap<Integer,String> nazivMjeseci = new HashMap<>();
+
+    private void popuniMjesece(){
+        nazivMjeseci.clear();
+        nazivMjeseci.put(1,"Januar");
+        nazivMjeseci.put(2,"Februar");
+        nazivMjeseci.put(3,"Mart");
+        nazivMjeseci.put(4,"April");
+        nazivMjeseci.put(5,"Maj");
+        nazivMjeseci.put(6,"Jun");
+        nazivMjeseci.put(7,"Jul");
+        nazivMjeseci.put(8,"Avgust");
+        nazivMjeseci.put(9,"Septembar");
+        nazivMjeseci.put(10,"Oktobar");
+        nazivMjeseci.put(11,"Novembar");
+        nazivMjeseci.put(12,"Decembar");
+    }
 
     public IzvjestajProdatihKarataController(File file) {
         File temp = null;
@@ -292,11 +313,13 @@ public class IzvjestajProdatihKarataController {
             }
             document.add(nazivIzvjestaja);
 
-            PdfPTable table = new PdfPTable(5);//broj kolona imace 4 kolone
+           // PdfPTable table = new PdfPTable(5);//broj kolona imace 4 kolone
+            PdfPTable table = new PdfPTable(7);//broj kolona imace 6 kolone PS.jedna vise je da naziv bude veci
 
             // the cell object
             PdfPCell celija1 = new PdfPCell(new Phrase("Statistika prodatih karata po repertoarima", font));
-            celija1.setColspan(5);
+            //celija1.setColspan(5);
+            celija1.setColspan(7);//PS
             celija1.setRowspan(1);
             celija1.setCalculatedHeight(10);
             celija1.setBackgroundColor(BaseColor.LIGHT_GRAY);
@@ -311,6 +334,7 @@ public class IzvjestajProdatihKarataController {
 
                     Igranje igranje = p.getIgranja().get(i);
                     String naziv = "";
+                    String datum = "";
                     Optional<Predstava> optPredtsva = Optional.ofNullable(null);
                     Optional<GostujucaPredstava> optGostujuca = Optional.ofNullable(null);
                     List<Karta> kartaList = new ArrayList<>();
@@ -362,14 +386,23 @@ public class IzvjestajProdatihKarataController {
                         optPredtsva = listaPredstava.stream().filter(e -> e.getId() == igranje.getIdPredstave()).findFirst();
                         if (optPredtsva.isPresent()) {
                             naziv = optPredtsva.get().getNaziv();
+                            LocalDate localDate = igranje.getTermin().toLocalDate();
+                            LocalDateTime localDateTime = LocalDateTime.of(localDate.getYear(),localDate.getMonthValue(),localDate.getDayOfMonth(),20,0);
+                            datum = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM"+System.lineSeparator()+"hh:mm"));
                         }
                     } else if (igranje.getIdGostujucePredstave() != 0) {
                         optGostujuca = gostujucePredstava.stream().filter(e -> e.getId() == igranje.getIdGostujucePredstave()).findFirst();
                         if (optGostujuca.isPresent()) {
                             naziv = optGostujuca.get().getNaziv();
+                            LocalDate localDate = igranje.getTermin().toLocalDate();
+                            LocalDateTime localDateTime = LocalDateTime.of(localDate.getYear(),localDate.getMonthValue(),localDate.getDayOfMonth(),20,0);
+                            datum = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM"+ System.lineSeparator()+ "hh:mm"));
                         }
                     }
-                    PdfPCell celija2 = new PdfPCell(new Phrase("Repertoar " + p.getMjesecIGodina().toString(), font));
+
+                    popuniMjesece();
+                    String nazivMjesecaZaTabelu = p.getMjesecIGodina().toLocalDate().getYear() + ", " + nazivMjeseci.getOrDefault(p.getMjesecIGodina().toLocalDate().getMonthValue(),"");
+                    PdfPCell celija2 = new PdfPCell(new Phrase(nazivMjesecaZaTabelu, font));
                     celija2.setRowspan(1);
                     celija2.setCalculatedHeight(10);
                     celija2.setColspan(1);
@@ -377,10 +410,18 @@ public class IzvjestajProdatihKarataController {
                     celija2.setHorizontalAlignment(Element.ALIGN_CENTER);
                     table.addCell(celija2);
 
+                    PdfPCell datumPredstavePS = new PdfPCell(new Phrase( datum, font));
+                    datumPredstavePS.setRowspan(1);
+                    datumPredstavePS.setCalculatedHeight(10);
+                    datumPredstavePS.setColspan(1);
+                    datumPredstavePS.setVerticalAlignment(Element.ALIGN_CENTER);
+                    datumPredstavePS.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(datumPredstavePS);
+
                     PdfPCell celija3 = new PdfPCell(new Phrase(naziv, font));
                     celija3.setRowspan(1);
                     celija3.setCalculatedHeight(10);
-                    celija3.setColspan(1);
+                    celija3.setColspan(2);
                     celija3.setVerticalAlignment(Element.ALIGN_CENTER);
                     celija3.setHorizontalAlignment(Element.ALIGN_CENTER);
                     table.addCell(celija3);
@@ -436,8 +477,17 @@ public class IzvjestajProdatihKarataController {
             celija7.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(celija7);
 
+            PdfPCell nazivKoloneDatumPS = new PdfPCell(new Phrase("Datum i vrijeme", font));
+            nazivKoloneDatumPS.setColspan(1);
+            nazivKoloneDatumPS.setRowspan(1);
+            nazivKoloneDatumPS.setCalculatedHeight(10);
+            nazivKoloneDatumPS.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            nazivKoloneDatumPS.setVerticalAlignment(Element.ALIGN_CENTER);
+            nazivKoloneDatumPS.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(nazivKoloneDatumPS);
+
             PdfPCell celija8 = new PdfPCell(new Phrase("Naziv predstave", font));
-            celija8.setColspan(1);
+            celija8.setColspan(2);
             celija8.setRowspan(1);
             celija8.setCalculatedHeight(10);
             celija8.setBackgroundColor(BaseColor.LIGHT_GRAY);
