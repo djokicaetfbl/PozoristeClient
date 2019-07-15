@@ -669,6 +669,14 @@ public class PregledKarataController implements Initializable {
     }
 
     private void obrisiRezervacijuButton(){
+        if(comboRezervacije.getSelectionModel().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Nema rezervacija za obrisati!", ButtonType.OK);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText("Upozorenje");
+            ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image(PregledKarataController.class.getResourceAsStream("/resursi/warning.png")));
+            alert.showAndWait();
+            return;
+        }
         try{
 
 
