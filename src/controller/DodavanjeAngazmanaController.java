@@ -169,11 +169,13 @@ public class DodavanjeAngazmanaController implements Initializable {
                 Calendar calendar1 = Calendar.getInstance();
                 calendar.set(datePickerDatumOd.getValue().getYear(), datePickerDatumOd.getValue().getMonthValue() - 1, datePickerDatumOd.getValue().getDayOfMonth());
                 calendar1.set(datePickerDatumDo.getValue().getYear(), datePickerDatumDo.getValue().getMonthValue() - 1, datePickerDatumDo.getValue().getDayOfMonth());
+
                 if (calendar1.after(calendar)) {
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    String strDate = dateFormat.format(new Date(calendar.getTimeInMillis()));
-                    out.writeUTF(ProtocolMessages.DODAJ_ANGAZMAN.getMessage()+predstava.getId()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+umjetnici.get(comboBoxUmjetnik.getSelectionModel().getSelectedIndex()).getIdRadnika()+
-                            ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+vrste.get(comboBoxVrstaAngazmana.getSelectionModel().getSelectedIndex()).getId()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+strDate);
+                    String strDateFrom = dateFormat.format(new Date(calendar.getTimeInMillis()));
+                    String strDateTo = dateFormat.format(new Date(calendar1.getTimeInMillis()));
+                    out.writeUTF(ProtocolMessages.AZURIRAJ_ANGAZMAN.getMessage()+predstava.getId()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+umjetnici.get(comboBoxUmjetnik.getSelectionModel().getSelectedIndex()).getIdRadnika()+
+                            ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+vrste.get(comboBoxVrstaAngazmana.getSelectionModel().getSelectedIndex()).getId()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+strDateFrom+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+strDateTo);
 //                    AngazmanDAO.dodajAngazman(predstava.getId(), umjetnici.get(comboBoxUmjetnik.getSelectionModel().getSelectedIndex()).getIdRadnika(),
 //                            vrste.get(comboBoxVrstaAngazmana.getSelectionModel().getSelectedIndex()).getId(), new Date(calendar.getTimeInMillis()));
                     if(in.readUTF().startsWith(ProtocolMessages.DODAJ_ANGAZMAN.getMessage())){
@@ -187,7 +189,7 @@ public class DodavanjeAngazmanaController implements Initializable {
                     osvjeziTabelu();
                     izmjena = false;
                     datePickerDatumDo.setVisible(false);
-                    buttonIzmijeni.setVisible(false);
+                    buttonIzmijeni.setVisible(true);
                     tableAngazmani.setDisable(false);
                     comboBoxUmjetnik.setDisable(false);
                     comboBoxVrstaAngazmana.setDisable(false);

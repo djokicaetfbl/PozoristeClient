@@ -9,9 +9,15 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -111,11 +117,11 @@ public class DodajPredstavuController implements Initializable {
         // inicijalizuj izlazni stream
         DataOutputStream out = new DataOutputStream(
                 sock.getOutputStream());
-        if (!textFieldNaziv.getText().isEmpty() && !textFieldTip.getText().isEmpty() && !textAreaOpis.getText().isEmpty()) {
+        if (!textFieldNaziv.getText().isEmpty() && !cmbTIPPREDSTAVE.getSelectionModel().getSelectedItem().isEmpty() && !textAreaOpis.getText().isEmpty()) {
             Predstava domaca = (Predstava) predstava;
             domaca.setNaziv(textFieldNaziv.getText());
             domaca.setOpis(textAreaOpis.getText());
-            domaca.setTip(textFieldTip.getText());
+            domaca.setTip(cmbTIPPREDSTAVE.getSelectionModel().getSelectedItem());
             if (provjeraPredstava()) {
                 //Predstava(String naziv, String opis, String tip)
                 out.writeUTF(ProtocolMessages.DODAJ_PREDSTAVU.getMessage()+domaca.getNaziv()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+domaca.getOpis()+
@@ -167,8 +173,8 @@ public class DodajPredstavuController implements Initializable {
                 sock.getOutputStream());
         if (dodavanje) {
             if (domacaPredstava) {
-                if (!textFieldNaziv.getText().isEmpty() && !textFieldTip.getText().isEmpty() && !textAreaOpis.getText().isEmpty()) {
-                    Predstava predstava = new Predstava(textFieldNaziv.getText(), textAreaOpis.getText(), textFieldTip.getText());
+                if (!textFieldNaziv.getText().isEmpty() && !cmbTIPPREDSTAVE.getSelectionModel().getSelectedItem().isEmpty() && !textAreaOpis.getText().isEmpty()) {
+                    Predstava predstava = new Predstava(textFieldNaziv.getText(), textAreaOpis.getText(), cmbTIPPREDSTAVE.getSelectionModel().getSelectedItem());
                     if (provjeraPredstava()) {
                         out.writeUTF(ProtocolMessages.DODAJ_PREDSTAVU.getMessage()+predstava.getNaziv()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+predstava.getOpis()+
                                 ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+predstava.getTip());
@@ -199,8 +205,8 @@ public class DodajPredstavuController implements Initializable {
                     upozorenjePoljaSuPrazna();
                 }
             } else {
-                if (!textFieldNaziv.getText().isEmpty() && !textFieldTip.getText().isEmpty() && !textAreaOpis.getText().isEmpty() && !textAreaGlumci.getText().isEmpty() && !textFieldPisac.getText().isEmpty() && !textFieldReziser.getText().isEmpty()) {
-                    GostujucaPredstava gostujucaPredstava = new GostujucaPredstava(textFieldNaziv.getText(), textAreaOpis.getText(), textFieldTip.getText(), textFieldPisac.getText(), textFieldReziser.getText(), textAreaGlumci.getText());
+                if (!textFieldNaziv.getText().isEmpty() && !cmbTIPPREDSTAVE.getSelectionModel().getSelectedItem().isEmpty() && !textAreaOpis.getText().isEmpty() && !textAreaGlumci.getText().isEmpty() && !textFieldPisac.getText().isEmpty() && !textFieldReziser.getText().isEmpty()) {
+                    GostujucaPredstava gostujucaPredstava = new GostujucaPredstava(textFieldNaziv.getText(), textAreaOpis.getText(), cmbTIPPREDSTAVE.getSelectionModel().getSelectedItem(), textFieldPisac.getText(), textFieldReziser.getText(), textAreaGlumci.getText());
                     if (provjeraGostujucaPredstava()) {
                         out.writeUTF(ProtocolMessages.DODAJ_GOSTUJUCU_PREDSTAVU.getMessage()+gostujucaPredstava.getNaziv()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+gostujucaPredstava.getOpis()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+
                                 gostujucaPredstava.getTip()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+gostujucaPredstava.getPisac()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+gostujucaPredstava.getReziser()+
@@ -230,11 +236,11 @@ public class DodajPredstavuController implements Initializable {
             }
         } else {
 
-            if (!textFieldNaziv.getText().isEmpty() && !textFieldTip.getText().isEmpty() && !textAreaOpis.getText().isEmpty() && !textAreaGlumci.getText().isEmpty() && !textFieldPisac.getText().isEmpty() && !textFieldReziser.getText().isEmpty()) {
+            if (!textFieldNaziv.getText().isEmpty() && !cmbTIPPREDSTAVE.getSelectionModel().getSelectedItem().isEmpty() && !textAreaOpis.getText().isEmpty() && !textAreaGlumci.getText().isEmpty() && !textFieldPisac.getText().isEmpty() && !textFieldReziser.getText().isEmpty()) {
                 GostujucaPredstava gostujuca = (GostujucaPredstava) predstava;
                 gostujuca.setNaziv(textFieldNaziv.getText());
                 gostujuca.setOpis(textAreaOpis.getText());
-                gostujuca.setTip(textFieldTip.getText());
+                gostujuca.setTip(cmbTIPPREDSTAVE.getSelectionModel().getSelectedItem());
                 gostujuca.setGlumci(textAreaGlumci.getText());
                 gostujuca.setPisac(textFieldPisac.getText());
                 gostujuca.setReziser(textFieldReziser.getText());
@@ -288,6 +294,8 @@ public class DodajPredstavuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cmbTIPPREDSTAVE.getItems().addAll("Drama","Komedija","Mjuzikl");
+        cmbTIPPREDSTAVE.getSelectionModel().selectFirst();
         buttonOK.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
         bNazad.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
         if (dodavanje) {
@@ -313,14 +321,16 @@ public class DodajPredstavuController implements Initializable {
                 buttonOK.setVisible(false);
                 Predstava domaca = (Predstava) predstava;
                 textFieldNaziv.setText(domaca.getNaziv());
-                textFieldTip.setText(domaca.getTip());
+                cmbTIPPREDSTAVE.getSelectionModel().select(domaca.getTip());
+                //textFieldTip.setText(domaca.getTip());
                 textAreaOpis.setText(domaca.getOpis());
 
             } else {
                 buttonPregledajAngazman.setVisible(false);
                 GostujucaPredstava gostujuca = (GostujucaPredstava) predstava;
                 textFieldNaziv.setText(gostujuca.getNaziv());
-                textFieldTip.setText(gostujuca.getTip());
+                cmbTIPPREDSTAVE.getSelectionModel().select(gostujuca.getTip());
+                //textFieldTip.setText(gostujuca.getTip());
                 textAreaOpis.setText(gostujuca.getOpis());
                 textFieldPisac.setText(gostujuca.getPisac());
                 textFieldReziser.setText(gostujuca.getReziser());
@@ -350,10 +360,10 @@ public class DodajPredstavuController implements Initializable {
             upozorenjeUnosDug("Naziv");
             return false;
         }
-        if (textFieldTip.getText().length() > 40) {
+       /* if (textFieldTip.getText().length() > 40) {
             upozorenjeUnosDug("Tip");
             return false;
-        }
+        }*/
         return true;
     }
 
@@ -362,10 +372,10 @@ public class DodajPredstavuController implements Initializable {
             upozorenjeUnosDug("Naziv");
             return false;
         }
-        if (textFieldTip.getText().length() > 40) {
+       /* if (textFieldTip.getText().length() > 40) {
             upozorenjeUnosDug("Tip");
             return false;
-        }
+        }*/
         if (textFieldPisac.getText().length() > 40) {
             upozorenjeUnosDug("Pisac");
             return false;

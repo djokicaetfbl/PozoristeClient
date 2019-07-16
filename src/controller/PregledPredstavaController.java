@@ -222,6 +222,7 @@ public class PregledPredstavaController implements Initializable {
             tipovi.clear();
             tipovi.addAll("Predstava", "Gostujuca predstava");
             comboBoxTip.setItems(tipovi);
+            comboBoxTip.getSelectionModel().selectFirst();
             textAreaOpisPredstave.setEditable(false);
             textAreaOpisGostujucePredstave.setEditable(false);
             textAreaGlumciGostujucePredstave.setEditable(false);
