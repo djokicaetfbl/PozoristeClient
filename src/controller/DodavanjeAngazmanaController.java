@@ -142,12 +142,15 @@ public class DodavanjeAngazmanaController implements Initializable {
             DataOutputStream out = new DataOutputStream(
                     sock.getOutputStream());
             if (!izmjena) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(datePickerDatumOd.getValue().getYear(), datePickerDatumOd.getValue().getMonthValue() - 1, datePickerDatumOd.getValue().getDayOfMonth());
 
-                if (((comboBoxUmjetnik.getSelectionModel().getSelectedIndex()) < 0) || ((comboBoxVrstaAngazmana.getSelectionModel().getSelectedIndex()) < 0)) {
+
+                if ((comboBoxUmjetnik.getSelectionModel().getSelectedIndex() <0) || (comboBoxVrstaAngazmana.getSelectionModel().getSelectedIndex() <0) || (datePickerDatumOd.getValue().getMonthValue() <0)){
                     upozorenjeSelekcije();
                 } else {
+
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(datePickerDatumOd.getValue().getYear(), datePickerDatumOd.getValue().getMonthValue() - 1, datePickerDatumOd.getValue().getDayOfMonth());
+
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     String strDate = dateFormat.format(new Date(calendar.getTimeInMillis()));
                     Integer umjetnikId=umjetnici.get(comboBoxUmjetnik.getSelectionModel().getSelectedIndex()).getIdRadnika();
@@ -165,6 +168,7 @@ public class DodavanjeAngazmanaController implements Initializable {
 
                 }
             } else {
+
                 Calendar calendar = Calendar.getInstance();
                 Calendar calendar1 = Calendar.getInstance();
                 calendar.set(datePickerDatumOd.getValue().getYear(), datePickerDatumOd.getValue().getMonthValue() - 1, datePickerDatumOd.getValue().getDayOfMonth());
@@ -608,7 +612,7 @@ public class DodavanjeAngazmanaController implements Initializable {
     private void upozorenjeSelekcije() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
-        alert.setContentText("Izaberite umjetnika i vrstu angazmana!");
+        alert.setContentText("Izaberite sve stavke!");
         alert.showAndWait();
     }
     private void upozorenjeDate() {
