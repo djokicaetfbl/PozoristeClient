@@ -7,10 +7,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -70,9 +67,9 @@ public class PregledKarataController implements Initializable {
     @FXML // fx:id="labelProslaUpozorenje"
     private Label labelProslaUpozorenje; // Value injected by FXMLLoader
 
-    private final Integer RED = 8;
+    private static final Integer RED = 8;
 
-    private final Integer KOLONA = 13;
+    private static final Integer KOLONA = 13;
 
     public static Scena scenaZaPrikaz;
 
@@ -192,7 +189,7 @@ public class PregledKarataController implements Initializable {
         if (sjedisteList.isEmpty()) {
             for (int i = 0; i < RED; i++) {
                 for (int j = 0; j < KOLONA; j++) {
-                    out.writeUTF(ProtocolMessages.DODAVANJE_SJEDISTA.getMessage()+scenaZaPrikaz.getIdScene()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+(i * KOLONA + j));
+                    out.writeUTF(ProtocolMessages.DODAVANJE_SJEDISTA.getMessage()+scenaZaPrikaz.getIdScene()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+(i * KOLONA + j+1));
                     if(in.readUTF().startsWith(ProtocolMessages.DODAVANJE_SJEDISTA_OK.getMessage())){
                         System.out.println("Sjediste uspjesno dodano");
                     }
@@ -554,6 +551,9 @@ public class PregledKarataController implements Initializable {
             stage.setScene(scene);
             stage.setResizable(false);
             stage.setOnCloseRequest(e -> {
+                //if(DodajRezervacijuController.isEmpty){
+                //    return;
+               // }
                 comboRezervacije.getItems().removeAll(comboRezervacije.getItems());
                 List<Rezervacija> rezervacijaList=new ArrayList<>();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -568,30 +568,31 @@ public class PregledKarataController implements Initializable {
                 }
                 if(response.startsWith(ProtocolMessages.REZERVACIJE_RESPONSE.getMessage())){
                     String[] rezervacijeLines=response.split(ProtocolMessages.LINE_SEPARATOR.getMessage());
-                    for(int i=0; i<rezervacijeLines.length; i++){
+                    if(rezervacijeLines.length>2) {
+                        for (int i = 0; i < rezervacijeLines.length; i++) {
 //                      Rezervacija(Integer id, String ime, Date termin, Integer idScene)
-                        String[] rezervacijaString=rezervacijeLines[i].split(ProtocolMessages.MESSAGE_SEPARATOR.getMessage());
-                        if(i==0) {
-                            Date termin=null;
-                            try {
-                                java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(rezervacijaString[3]);
-                                termin = new Date(date1.getTime());
-                            }catch (java.text.ParseException pe){
-                                pe.printStackTrace();
+                            String[] rezervacijaString = rezervacijeLines[i].split(ProtocolMessages.MESSAGE_SEPARATOR.getMessage());
+                            if (i == 0) {
+                                Date termin = null;
+                                try {
+                                    java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(rezervacijaString[3]);
+                                    termin = new Date(date1.getTime());
+                                } catch (java.text.ParseException pe) {
+                                    pe.printStackTrace();
+                                }
+                                Rezervacija rezervacija = new Rezervacija(Integer.parseInt(rezervacijaString[1]), rezervacijaString[2], termin, Integer.parseInt(rezervacijaString[4]));
+                                rezervacijaList.add(rezervacija);
+                            } else {
+                                Date termin = null;
+                                try {
+                                    java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(rezervacijaString[2]);
+                                    termin = new Date(date1.getTime());
+                                } catch (java.text.ParseException pe) {
+                                    pe.printStackTrace();
+                                }
+                                Rezervacija rezervacija = new Rezervacija(Integer.parseInt(rezervacijaString[0]), rezervacijaString[1], termin, Integer.parseInt(rezervacijaString[3]));
+                                rezervacijaList.add(rezervacija);
                             }
-                            Rezervacija rezervacija = new Rezervacija(Integer.parseInt(rezervacijaString[1]), rezervacijaString[2], termin, Integer.parseInt(rezervacijaString[4]));
-                            rezervacijaList.add(rezervacija);
-                        }
-                        else {
-                            Date termin=null;
-                            try {
-                                java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(rezervacijaString[2]);
-                                termin = new Date(date1.getTime());
-                            }catch (java.text.ParseException pe){
-                                pe.printStackTrace();
-                            }
-                            Rezervacija rezervacija = new Rezervacija(Integer.parseInt(rezervacijaString[0]), rezervacijaString[1], termin, Integer.parseInt(rezervacijaString[3]));
-                            rezervacijaList.add(rezervacija);
                         }
                     }
                 }
@@ -602,6 +603,9 @@ public class PregledKarataController implements Initializable {
             });
 
             stage.setOnHiding(e -> {
+                //if(DodajRezervacijuController.isEmpty){
+                //    return;
+               // }
                 comboRezervacije.getItems().removeAll(comboRezervacije.getItems());
                 List<Rezervacija> rezervacijaList=new ArrayList<>();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -616,30 +620,31 @@ public class PregledKarataController implements Initializable {
                 }
                 if(response.startsWith(ProtocolMessages.REZERVACIJE_RESPONSE.getMessage())){
                     String[] rezervacijeLines=response.split(ProtocolMessages.LINE_SEPARATOR.getMessage());
-                    for(int i=0; i<rezervacijeLines.length; i++){
+                    if(rezervacijeLines.length>2) {
+                        for (int i = 0; i < rezervacijeLines.length; i++) {
 //                      Rezervacija(Integer id, String ime, Date termin, Integer idScene)
-                        String[] rezervacijaString=rezervacijeLines[i].split(ProtocolMessages.MESSAGE_SEPARATOR.getMessage());
-                        if(i==0) {
-                            Date termin=null;
-                            try {
-                                java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(rezervacijaString[3]);
-                                termin = new Date(date1.getTime());
-                            }catch (java.text.ParseException pe){
-                                pe.printStackTrace();
+                            String[] rezervacijaString = rezervacijeLines[i].split(ProtocolMessages.MESSAGE_SEPARATOR.getMessage());
+                            if (i == 0) {
+                                Date termin = null;
+                                try {
+                                    java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(rezervacijaString[3]);
+                                    termin = new Date(date1.getTime());
+                                } catch (java.text.ParseException pe) {
+                                    pe.printStackTrace();
+                                }
+                                Rezervacija rezervacija = new Rezervacija(Integer.parseInt(rezervacijaString[1]), rezervacijaString[2], termin, Integer.parseInt(rezervacijaString[4]));
+                                rezervacijaList.add(rezervacija);
+                            } else {
+                                Date termin = null;
+                                try {
+                                    java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(rezervacijaString[2]);
+                                    termin = new Date(date1.getTime());
+                                } catch (java.text.ParseException pe) {
+                                    pe.printStackTrace();
+                                }
+                                Rezervacija rezervacija = new Rezervacija(Integer.parseInt(rezervacijaString[0]), rezervacijaString[1], termin, Integer.parseInt(rezervacijaString[3]));
+                                rezervacijaList.add(rezervacija);
                             }
-                            Rezervacija rezervacija = new Rezervacija(Integer.parseInt(rezervacijaString[1]), rezervacijaString[2], termin, Integer.parseInt(rezervacijaString[4]));
-                            rezervacijaList.add(rezervacija);
-                        }
-                        else {
-                            Date termin=null;
-                            try {
-                                java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(rezervacijaString[2]);
-                                termin = new Date(date1.getTime());
-                            }catch (java.text.ParseException pe){
-                                pe.printStackTrace();
-                            }
-                            Rezervacija rezervacija = new Rezervacija(Integer.parseInt(rezervacijaString[0]), rezervacijaString[1], termin, Integer.parseInt(rezervacijaString[3]));
-                            rezervacijaList.add(rezervacija);
                         }
                     }
                 }
@@ -803,7 +808,10 @@ public class PregledKarataController implements Initializable {
                     prodajRezervaciju();
                 } else if (result.get() == obicnaProdaja) {
                     rezervisanaSjedista.forEach(e -> {
-                        Karta k = new Karta(0, (Integer.valueOf(e.getId())) / 10, Integer.valueOf(e.getId()), terminPredstave, scenaZaPrikaz.getIdScene());
+                        int pomocna = (Integer.valueOf(e.getId()))%PregledKarataController.KOLONA;
+                        int pomocna2 =  PregledKarataController.KOLONA - pomocna;
+                        int brojSjedistaKarta = (Integer.valueOf(e.getId())) + pomocna2;
+                        Karta k = new Karta(0, brojSjedistaKarta/PregledKarataController.KOLONA, Integer.valueOf(e.getId()), terminPredstave, scenaZaPrikaz.getIdScene());
                         DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
                         String strDate1 = dateFormat1.format(k.getTermin());
                         boolean ress = false;
@@ -827,7 +835,10 @@ public class PregledKarataController implements Initializable {
 
             } else if (comboRezervacije.getSelectionModel().isEmpty() && !rezervisanaSjedista.isEmpty()) {
                 rezervisanaSjedista.forEach(e -> {
-                    Karta k = new Karta(0, (Integer.valueOf(e.getId())) / 10, Integer.valueOf(e.getId()), terminPredstave, scenaZaPrikaz.getIdScene());
+                    int pomocna = (Integer.valueOf(e.getId()))%PregledKarataController.KOLONA;
+                    int pomocna2 =  PregledKarataController.KOLONA - pomocna;
+                    int brojSjedistaKarta = (Integer.valueOf(e.getId())) + pomocna2;
+                    Karta k = new Karta(0, brojSjedistaKarta/PregledKarataController.KOLONA,Integer.valueOf(e.getId()), terminPredstave, scenaZaPrikaz.getIdScene());
                     DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
                     String strDate1 = dateFormat1.format(k.getTermin());
 
@@ -991,7 +1002,11 @@ public class PregledKarataController implements Initializable {
 
         sjedista.forEach(e -> {
         	//Karta(Integer id,Integer brojReda,Integer brojSjedista,Date termin,Integer idScene)
-            Karta k = new Karta(0, (int) e.getBrojSjedista() / 10, e.getBrojSjedista(), e.getTermin(), e.getIdScene());
+            int pomocna = e.getBrojSjedista()%PregledKarataController.KOLONA;
+            int pomocna2 =  PregledKarataController.KOLONA - pomocna;
+            int brojSjedistaKarta = e.getBrojSjedista() + pomocna2;
+            System.out.println("Prodaja rezervacije "+brojSjedistaKarta / PregledKarataController.KOLONA);
+            Karta k = new Karta(0, brojSjedistaKarta / PregledKarataController.KOLONA, e.getBrojSjedista(), e.getTermin(), e.getIdScene());
             DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
             String strDate1 = dateFormat1.format(k.getTermin());
 

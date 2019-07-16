@@ -85,7 +85,7 @@ public class Karta {
 
     @Override
     public String toString() {
-        return "Red " + (this.brojReda+1) + " , Sjediste " + (this.brojSjedista+1);
+        return "Red " + this.brojReda + " , Sjediste " + (this.brojSjedista+1);
     }
     
     

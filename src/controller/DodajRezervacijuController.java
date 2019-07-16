@@ -46,11 +46,18 @@ public class DodajRezervacijuController implements Initializable {
 
     public static ArrayList<Button> rezervisanaSjedista;
 
+    public static boolean isEmpty = false;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         buttonDodaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_plus.png"))));
         buttonOdustani.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/back.png"))));
-        buttonOdustani.setOnAction(e -> ((Stage) buttonOdustani.getScene().getWindow()).close());
+        buttonOdustani.setOnAction(e -> {
+            if(textFiled.getText().isEmpty()){
+                isEmpty = true;
+            }
+            ((Stage) buttonOdustani.getScene().getWindow()).close();
+        });
         buttonDodaj.setOnAction(e -> dodajButton());
     }
 

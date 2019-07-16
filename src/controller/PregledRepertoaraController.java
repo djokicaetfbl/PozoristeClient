@@ -79,6 +79,8 @@ public class PregledRepertoaraController implements Initializable {
 
     public static boolean igranjeProslo = false;
 
+    private static int increment =0;
+
     @FXML
     private Button bIzlaz;
 
@@ -310,7 +312,6 @@ public class PregledRepertoaraController implements Initializable {
             repertoarZaPrikaz.getIgranja().sort(Comparator.comparing(e -> e.getTermin()));
 
             PregledRepertoaraController.listaDatumaRepertoara.clear();
-            System.out.println("obrisao");
             for (Integer i = 0; i < repertoarZaPrikaz.getIgranja().size(); i++) {
                 HBox hBox = new HBox();
                 Label vrijeme = new Label();
@@ -403,6 +404,7 @@ public class PregledRepertoaraController implements Initializable {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd:hh-mm", Locale.GERMANY);
             java.util.Date dat=format.parse(string);
             Date date = new Date(dat.getTime());
+            increment=0;
             igranjePodBrojem=0;
             igranjeProslo = false;
             PregledRepertoaraController.listaDatumaRepertoara.stream().forEach(p -> {
@@ -412,11 +414,24 @@ public class PregledRepertoaraController implements Initializable {
                     if(LocalDate.now().isAfter(date.toLocalDate())){
                         igranjeProslo = true;
                     }
+                    igranjePodBrojem = increment;
                 }else{
-                    igranjePodBrojem++;
+                    increment++;
                 }
             });
-            zeljenoIgranje = repertoarZaPrikaz.getIgranja().stream().filter(e -> e.getTermin().equals(listaDatumaRepertoara.get(igranjePodBrojem))).findFirst().get();
+            zeljenoIgranje = repertoarZaPrikaz.getIgranja().stream().filter(
+                    e -> {
+                        //e.getTermin().equals(listaDatumaRepertoara.get(igranjePodBrojem));
+                        if(e.getTermin().toLocalDate().getDayOfMonth() == listaDatumaRepertoara.get(igranjePodBrojem).toLocalDate().getDayOfMonth()
+                                && e.getTermin().toLocalDate().getYear() == listaDatumaRepertoara.get(igranjePodBrojem).toLocalDate().getYear()
+                                && e.getTermin().toLocalDate().getMonthValue() == listaDatumaRepertoara.get(igranjePodBrojem).toLocalDate().getMonthValue()){
+                            System.out.println("nasao sam igranje"+e.getTermin().toLocalDate());
+                            return true;
+
+                        }else{
+                            return false;
+                        }
+                    }).findFirst().get();
         } catch (Exception e) {
             Logger.getLogger(PregledPredstavaController.class.getName()).log(Level.SEVERE, null, e);
         }
