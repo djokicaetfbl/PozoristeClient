@@ -47,6 +47,7 @@ import javafx.stage.Stage;
 import main.Pozoriste;
 import model.dto.*;
 
+import sun.rmi.runtime.Log;
 import util.ProtocolMessages;
 
 public class PregledRepertoaraController implements Initializable {
@@ -84,19 +85,39 @@ public class PregledRepertoaraController implements Initializable {
     @FXML
     private Button bIzlaz;
 
+
+    @FXML
+    void nazadNaLoginAdmin(ActionEvent event) {
+        System.out.println("ASSASASASASSAS");
+        try {
+        Parent loginController = FXMLLoader.load(getClass().getResource("/view/PregledSvihRepertoara.fxml"));
+        Scene loginScene = new Scene(loginController);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setTitle("Logovanje");
+        window.setScene(loginScene);
+        window.show();
+        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+        window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
+        listaDatumaRepertoara.clear();
+        } catch (IOException ex) {
+            Logger.getLogger(PregledRepertoaraController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @FXML
     void nazadNaLoginFormu(ActionEvent event) {
         try {
-            Parent loginController = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
-            Scene loginScene = new Scene(loginController);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setTitle("Logovanje");
-            window.setScene(loginScene);
-            window.show();
-            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-            window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
-            window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
-            listaDatumaRepertoara.clear();
+                Parent loginController = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+                Scene loginScene = new Scene(loginController);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setTitle("Logovanje");
+                window.setScene(loginScene);
+                window.show();
+                Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+                window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
+                listaDatumaRepertoara.clear();
         } catch (IOException ex) {
             Logger.getLogger(PregledRepertoaraController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -239,7 +260,7 @@ public class PregledRepertoaraController implements Initializable {
                 repertoarZaPrikaz = null;
             }
         }
-        buttonNazad.setOnAction(e -> buttonSetAction());
+        //buttonNazad.setOnAction(e -> buttonSetAction());
 
         if (repertoarZaPrikaz != null && !repertoarZaPrikaz.getIgranja().isEmpty()) {
             vBox = new VBox();

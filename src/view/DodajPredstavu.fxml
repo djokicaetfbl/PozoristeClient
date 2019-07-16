@@ -22,11 +22,11 @@
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font></Label>
-      <Label fx:id="labelPisac" layoutX="120.0" layoutY="265.0" prefHeight="27.0" prefWidth="71.0" text="Pisac" AnchorPane.leftAnchor="120.0">
+      <Label fx:id="labelPisac" layoutX="120.0" layoutY="233.0" prefHeight="27.0" prefWidth="71.0" text="Pisac" AnchorPane.leftAnchor="120.0">
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font></Label>
-      <Label fx:id="labelReziser" layoutX="120.0" layoutY="314.0" prefHeight="27.0" prefWidth="71.0" text="Režiser" AnchorPane.leftAnchor="120.0">
+      <Label fx:id="labelReziser" layoutX="120.0" layoutY="301.0" prefHeight="27.0" prefWidth="71.0" text="Režiser" AnchorPane.leftAnchor="120.0">
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font></Label>
@@ -42,15 +42,11 @@
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font></TextArea>
-      <TextField fx:id="textFieldTip" layoutX="224.0" layoutY="176.0" prefHeight="35.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0">
+      <TextField fx:id="textFieldPisac" layoutX="200.0" layoutY="227.0" prefHeight="35.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0">
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font></TextField>
-      <TextField fx:id="textFieldPisac" layoutX="200.0" layoutY="260.0" prefHeight="35.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0">
-         <font>
-            <Font name="Tempus Sans ITC" size="18.0" />
-         </font></TextField>
-      <TextField fx:id="textFieldReziser" layoutX="200.0" layoutY="314.0" prefHeight="35.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0">
+      <TextField fx:id="textFieldReziser" layoutX="200.0" layoutY="295.0" prefHeight="35.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0">
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font></TextField>
@@ -58,18 +54,18 @@
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font></TextArea>
-      <Button fx:id="buttonPregledajAngazman" layoutX="496.0" layoutY="402.0" mnemonicParsing="false" onAction="#pregledajAngazmanAction" prefHeight="40.0" prefWidth="120.0" text="Angažmani" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
+      <Button fx:id="buttonPregledajAngazman" layoutX="496.0" layoutY="402.0" mnemonicParsing="false" onAction="#pregledajAngazmanAction" prefHeight="40.0" prefWidth="143.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Angažmani" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font></Button>
-      <Button fx:id="buttonOK" layoutX="480.0" layoutY="421.0" mnemonicParsing="false" onAction="#okAction" prefHeight="40.0" prefWidth="120.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Sačuvaj" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
+      <Button fx:id="buttonOK" layoutX="443.0" layoutY="449.0" mnemonicParsing="false" onAction="#okAction" prefHeight="40.0" prefWidth="143.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Sačuvaj" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font></Button>
-      <Button fx:id="bNazad" layoutX="149.0" layoutY="402.0" mnemonicParsing="false" onAction="#nazadNaPregledPredstava" prefHeight="40.0" prefWidth="120.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Odustani" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
+      <Button fx:id="bNazad" layoutX="149.0" layoutY="402.0" mnemonicParsing="false" onAction="#nazadNaPregledPredstava" prefHeight="40.0" prefWidth="143.0" style="-fx-font-family: &quot;Tempus Sans ITC&quot;;" text="Odustani" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="Tempus Sans ITC" size="18.0" />
          </font></Button>
-      <ComboBox fx:id="cmbTIPPREDSTAVE" layoutX="200.0" layoutY="218.0" prefHeight="27.0" prefWidth="300.0" />
+      <ComboBox fx:id="cmbTIPPREDSTAVE" layoutX="200.0" layoutY="176.0" prefHeight="27.0" prefWidth="300.0" />
    </children>
 </AnchorPane>

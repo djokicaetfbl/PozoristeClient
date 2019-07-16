@@ -294,6 +294,9 @@ public class DodajPredstavuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if(!dodavanje){
+            buttonPregledajAngazman.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
+        }
         cmbTIPPREDSTAVE.getItems().addAll("Drama","Komedija","Mjuzikl");
         cmbTIPPREDSTAVE.getSelectionModel().selectFirst();
         buttonOK.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));

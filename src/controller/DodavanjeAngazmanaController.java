@@ -120,7 +120,7 @@ public class DodavanjeAngazmanaController implements Initializable {
         datumOdColumn = new TableColumn("Datum od");
         datumOdColumn.setCellValueFactory(new PropertyValueFactory<>("datumOd"));
 
-        datumDoColumn = new TableColumn("Datum do");
+        datumDoColumn = new TableColumn(" Datum  do ");
         datumDoColumn.setCellValueFactory(new PropertyValueFactory<>("datumDo"));
 
         tableAngazmani.setItems(angazmani);
@@ -367,6 +367,7 @@ public class DodavanjeAngazmanaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        // comboBoxVrstaAngazmana.getItems().addAll("Reditelj","Koreograf","Dirigent","Scenograf","Kostimograf","Tonac","Dizajner osvjetljenja","Asistent reditelja","Asistent koreografa"
        // ,"Korepetitor");
+        buttonIzmijeni.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/rsz_editproperty_48px.png"))));
         buttonDodaj.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
         buttonOK.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resursi/accept.png"))));
         try {
