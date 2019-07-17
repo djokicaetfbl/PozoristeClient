@@ -124,14 +124,7 @@ public class DodajPredstavuController implements Initializable {
             domaca.setTip(cmbTIPPREDSTAVE.getSelectionModel().getSelectedItem());
             if (provjeraPredstava()) {
                 //Predstava(String naziv, String opis, String tip)
-                out.writeUTF(ProtocolMessages.DODAJ_PREDSTAVU.getMessage()+domaca.getNaziv()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+domaca.getOpis()+
-                        ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+domaca.getTip());
-                if(in.readUTF().startsWith(ProtocolMessages.DODAJ_PREDSTAVU_OK.getMessage())){
-                    System.out.println("Predstava uspjesno dodata");
-                }
-                else {
-                    System.out.println("Predstava nije dodata");
-                }
+                
                 out.writeUTF(ProtocolMessages.AZURIRAJ_PREDSTAVU.getMessage()+domaca.getNaziv()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+domaca.getOpis()+
                         ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+domaca.getTip()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+domaca.getId());
                 if(in.readUTF().startsWith(ProtocolMessages.AZURIRAJ_PREDSTAVU_OK.getMessage())){
