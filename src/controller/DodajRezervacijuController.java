@@ -95,7 +95,7 @@ public class DodajRezervacijuController implements Initializable {
             
             out.writeUTF(ProtocolMessages.ADD_REZERVACIJA.getMessage()+ PregledKarataController.rezervacije.getId()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage() +PregledKarataController.rezervacije.getIme()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+ strDate + ProtocolMessages.MESSAGE_SEPARATOR.getMessage() + PregledKarataController.rezervacije.getIdScene());
             if(in.readUTF().startsWith(ProtocolMessages.ADD_REZERVACIJA_OK.getMessage())) {
-            	System.out.println("Rezervacija uspjesno dodata");
+            	//System.out.println("Rezervacija uspjesno dodata");
             }
             out.writeUTF(ProtocolMessages.REZERVACIJE.getMessage()+terminPredstave+ ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+ scenaZaPrikaz.getIdScene());
             String response = null;
@@ -139,9 +139,9 @@ public class DodajRezervacijuController implements Initializable {
                 out.writeUTF(ProtocolMessages.ADD_REZERVACIJA.getMessage() + 0 + ProtocolMessages.MESSAGE_SEPARATOR.getMessage() + imeRezervacije + ProtocolMessages.MESSAGE_SEPARATOR.getMessage() +
                         strDate1 + ProtocolMessages.MESSAGE_SEPARATOR.getMessage() + scenaZaPrikaz.getIdScene());
                 if (in.readUTF().startsWith(ProtocolMessages.ADD_REZERVACIJA_OK.getMessage())) {
-                    System.out.println("Rezervacija uspjesno dodata");
+                    //System.out.println("Rezervacija uspjesno dodata");
                 } else {
-                    System.out.println("Rezervacija nije dodata");
+                    //System.out.println("Rezervacija nije dodata");
                 }
             } else {
                 unosRezervacija = rezervacijaList.stream().filter(e -> e.getIme().equals(imeRezervacije)).findAny().get();
@@ -160,9 +160,9 @@ public class DodajRezervacijuController implements Initializable {
                     eg.printStackTrace();
                 }
                 if (reqq.startsWith(ProtocolMessages.ADD_REZERVISANO_SJEDISTE_OK.getMessage())) {
-                    System.out.println("Rezervisano sjediste uspjesno dodato");
+                   // System.out.println("Rezervisano sjediste uspjesno dodato");
                 } else {
-                    System.out.println("Rezervisano sjediste nije dodato");
+                    //System.out.println("Rezervisano sjediste nije dodato");
                 }
                 e.setDisable(true);
             });

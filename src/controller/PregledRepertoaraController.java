@@ -289,7 +289,7 @@ public class PregledRepertoaraController implements Initializable {
                     }
                 }
             } else {
-                System.out.println("Greska pri pristupu Serveru!");
+               // System.out.println("Greska pri pristupu Serveru!");
             }
             predstavaList.stream().forEach(e -> {
                 if (nadji.stream().filter(p -> p == e.getId()).findFirst().isPresent()) {
@@ -323,7 +323,7 @@ public class PregledRepertoaraController implements Initializable {
                     }
                 }
             } else {
-                System.out.println("Greska pri pristupu Serveru!");
+               // System.out.println("Greska pri pristupu Serveru!");
             }
             gostujucaPredstavaList.stream().forEach(e -> {
                 if (nadji.stream().filter(p -> p == e.getId()).findFirst().isPresent()) {
@@ -446,7 +446,7 @@ public class PregledRepertoaraController implements Initializable {
                         if(e.getTermin().toLocalDate().getDayOfMonth() == listaDatumaRepertoara.get(igranjePodBrojem).toLocalDate().getDayOfMonth()
                                 && e.getTermin().toLocalDate().getYear() == listaDatumaRepertoara.get(igranjePodBrojem).toLocalDate().getYear()
                                 && e.getTermin().toLocalDate().getMonthValue() == listaDatumaRepertoara.get(igranjePodBrojem).toLocalDate().getMonthValue()){
-                            System.out.println("nasao sam igranje"+e.getTermin().toLocalDate());
+                            //System.out.println("nasao sam igranje"+e.getTermin().toLocalDate());
                             return true;
 
                         }else{

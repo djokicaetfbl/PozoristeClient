@@ -161,7 +161,7 @@ public class PregledKarataController implements Initializable {
             }
         }
         else {
-            System.out.println("Lista karata nije dobijena sa servera!");
+            //System.out.println("Lista karata nije dobijena sa servera!");
         }
         comboBoxKarte.getItems().addAll(kartaList.stream().filter(e -> e.getIdScene() == scenaZaPrikaz.getIdScene() && e.getTermin().equals(terminPredstave)).collect(Collectors.toList()));
         List<Sjediste> sjedisteList=new ArrayList<>();
@@ -191,10 +191,10 @@ public class PregledKarataController implements Initializable {
                 for (int j = 0; j < KOLONA; j++) {
                     out.writeUTF(ProtocolMessages.DODAVANJE_SJEDISTA.getMessage()+scenaZaPrikaz.getIdScene()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+(i * KOLONA + j+1));
                     if(in.readUTF().startsWith(ProtocolMessages.DODAVANJE_SJEDISTA_OK.getMessage())){
-                        System.out.println("Sjediste uspjesno dodano");
+                        //System.out.println("Sjediste uspjesno dodano");
                     }
                     else {
-                        System.out.println("Sjediste nije dodano");
+                        //System.out.println("Sjediste nije dodano");
                     }
                     //SjedisteDAO.dodavanjeSjedista(scenaZaPrikaz.getIdScene(), (i * KOLONA + j));
                 }
@@ -358,7 +358,7 @@ public class PregledKarataController implements Initializable {
                     }
                 }
             } else {
-                System.out.println("Lista karata nije dobijena sa servera!");
+                //System.out.println("Lista karata nije dobijena sa servera!");
             }
             List<Karta> karteProdate = kartaList;
             for (int i = 0; i < RED; i++) {
@@ -745,10 +745,10 @@ public class PregledKarataController implements Initializable {
             out.writeUTF(ProtocolMessages.OBRISI_REZERVACIJU.getMessage()+rez.getId()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+rez.getIme()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+
                     strDate1+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+rez.getIdScene());
             if(in.readUTF().startsWith(ProtocolMessages.OBRISI_REZERVACIJU_OK.getMessage())){
-                System.out.println("Rezervacija uspjesno obrisana");
+                //System.out.println("Rezervacija uspjesno obrisana");
             }
             else {
-                System.out.println("Rezervacija nije obrisana");
+                //System.out.println("Rezervacija nije obrisana");
             }
             //RezervacijaDAO.obrisiRezervaciju(rez);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Rezervacija obrisana", ButtonType.OK);
@@ -823,9 +823,9 @@ public class PregledKarataController implements Initializable {
                             eee.printStackTrace();
                         }
                         if (ress) {
-                            System.out.println("Karta uspjesno dodata");
+                            //System.out.println("Karta uspjesno dodata");
                         } else {
-                            System.out.println("Karta nije dodata");
+                           // System.out.println("Karta nije dodata");
                         }
                         //KartaDAO.dodajKartu(k);
                     });
@@ -851,9 +851,9 @@ public class PregledKarataController implements Initializable {
                         eee.printStackTrace();
                     }
                     if (ress) {
-                        System.out.println("Karta uspjesno dodata");
+                       // System.out.println("Karta uspjesno dodata");
                     } else {
-                        System.out.println("Karta nije dodata");
+                       // System.out.println("Karta nije dodata");
                     }
                     //KartaDAO.dodajKartu(k);
                 });
@@ -891,10 +891,10 @@ public class PregledKarataController implements Initializable {
         if (!comboBoxKarte.getSelectionModel().isEmpty()) {
             out.writeUTF(ProtocolMessages.OBRISI_KARTU.getMessage()+comboBoxKarte.getSelectionModel().getSelectedItem().getId());
             if(in.readUTF().startsWith(ProtocolMessages.OBRISI_KARTU_OK.getMessage())){
-                System.out.println("Karta uspjesno obrisana");
+               // System.out.println("Karta uspjesno obrisana");
             }
             else {
-                System.out.println("Karta nije obrisana");
+                //System.out.println("Karta nije obrisana");
             }
 //          KartaDAO.obrisiKartu(comboBoxKarte.getSelectionModel().getSelectedItem().getId());
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Karta uspjesno stornirana", ButtonType.OK);
@@ -1005,7 +1005,7 @@ public class PregledKarataController implements Initializable {
             int pomocna = e.getBrojSjedista()%PregledKarataController.KOLONA;
             int pomocna2 =  PregledKarataController.KOLONA - pomocna;
             int brojSjedistaKarta = e.getBrojSjedista() + pomocna2;
-            System.out.println("Prodaja rezervacije "+brojSjedistaKarta / PregledKarataController.KOLONA);
+            //System.out.println("Prodaja rezervacije "+brojSjedistaKarta / PregledKarataController.KOLONA);
             Karta k = new Karta(0, brojSjedistaKarta / PregledKarataController.KOLONA, e.getBrojSjedista(), e.getTermin(), e.getIdScene());
             DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
             String strDate1 = dateFormat1.format(k.getTermin());
@@ -1020,10 +1020,10 @@ public class PregledKarataController implements Initializable {
                 eee.printStackTrace();
             }
             if(ress){
-                System.out.println("Karta uspjesno dodata");
+               // System.out.println("Karta uspjesno dodata");
             }
             else {
-                System.out.println("Karta nije dodata");
+               // System.out.println("Karta nije dodata");
             }
             //KartaDAO.dodajKartu(k);
         });
@@ -1041,10 +1041,10 @@ public class PregledKarataController implements Initializable {
                 ie.printStackTrace();
             }
             if(ooo){
-                System.out.println("Rezervisano sjediste uspjesno obrisano");
+                //System.out.println("Rezervisano sjediste uspjesno obrisano");
             }
             else {
-                System.out.println("Rezervisano sjediste nije obrisano");
+                //System.out.println("Rezervisano sjediste nije obrisano");
             }
 //            RezervisanoSjedisteDAO.obrisiRezervisanoSjediste(e);
         });
@@ -1053,10 +1053,10 @@ public class PregledKarataController implements Initializable {
         out.writeUTF(ProtocolMessages.OBRISI_REZERVACIJU.getMessage()+rezervacija.getId()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+rezervacija.getIme()+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+
                 strDate1+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+rezervacija.getIdScene());
         if(in.readUTF().startsWith(ProtocolMessages.OBRISI_REZERVACIJU_OK.getMessage())){
-            System.out.println("Rezervacija uspjesno obrisana");
+            //System.out.println("Rezervacija uspjesno obrisana");
         }
         else {
-            System.out.println("Rezervacija nije obrisana");
+           // System.out.println("Rezervacija nije obrisana");
         }
         //RezervacijaDAO.obrisiRezervaciju(rezervacija);
             postavi();

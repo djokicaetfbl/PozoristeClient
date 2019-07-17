@@ -278,7 +278,7 @@ public class IzvjestajProdatihKarataController {
                     }
                 }
             } else {
-                System.out.println("Greska pri pristupu Serveru!");
+                //System.out.println("Greska pri pristupu Serveru!");
             }
             List<Predstava> listaPredstava = predstavaList;
 
@@ -300,7 +300,7 @@ public class IzvjestajProdatihKarataController {
                     }
                 }
             } else {
-                System.out.println("Greska pri pristupu Serveru!");
+                //System.out.println("Greska pri pristupu Serveru!");
             }
             List<GostujucaPredstava> gostujucePredstava = gostujucaPredstavaList;
 
@@ -379,7 +379,7 @@ public class IzvjestajProdatihKarataController {
                         }
                     }
                     else {
-                        System.out.println("Lista karata nije dobijena sa servera!");
+                       // System.out.println("Lista karata nije dobijena sa servera!");
                     }
                     List<Karta> karte = kartaList.stream().filter(e -> e.getTermin().equals(igranje.getTermin()) && e.getIdScene() == igranje.getIdScene()).collect(Collectors.toList());
                     if (igranje.getIdPredstave() != 0) {

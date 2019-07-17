@@ -73,9 +73,9 @@ public class LogInController implements Initializable {
             String passwordHash = hashSHA256(password);
             out.writeUTF(ProtocolMessages.AUTH_REQUEST.getMessage()+username+ProtocolMessages.MESSAGE_SEPARATOR.getMessage()+passwordHash+ProtocolMessages.MESSAGE_SEPARATOR.getMessage());
             String response=in.readUTF();
-            System.out.println("response="+response);
+            //System.out.println("response="+response);
             if(response.startsWith(ProtocolMessages.OK.getMessage())) {
-            	System.out.println("Tip="+response.split(ProtocolMessages.MESSAGE_SEPARATOR.getMessage())[1]);
+            	//System.out.println("Tip="+response.split(ProtocolMessages.MESSAGE_SEPARATOR.getMessage())[1]);
             	tipKorisnika=response.split(ProtocolMessages.MESSAGE_SEPARATOR.getMessage())[1];
             	//idLogovanog=Integer.parseInt(response.split(ProtocolMessages.MESSAGE_SEPARATOR.getMessage())[2]);
                 return true;
